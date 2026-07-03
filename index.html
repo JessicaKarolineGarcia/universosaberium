@@ -407,9 +407,9 @@ hr.orn::before{content:'✦  ·  ✦  ·  ✦';color:rgba(201,168,76,.4);font-si
 <a href="#cap17"><span class="nav-num">17</span> Pedagógico</a>
 <a href="#cap18"><span class="nav-num">18</span> Expansão</a>
 <a href="#cap19"><span class="nav-num">19</span> Frases Oficiais</a> 
-<a href="saberium_guardiao_boas_vindas.pdf" target="_blank"><span class="nav-num">20</span> Boas-vindas da Guardiã</a>
-<a href="saberium-dia1-missao01.html" target="_blank"><span class="nav-num">21</span> Missão 1</a>
-<a href="saberiumlivrodospoderes.html" target="_blank"><span class="nav-num">22</span> Livro dos Poderes</a>
+<a href="saberium_guardiao_boas_vindas.pdf" target="_blank" class="external-link"><span class="nav-num">20</span> Boas-vindas da Guardiã</a>
+<a href="saberium-dia1-missao01.html" target="_blank" class="external-link"><span class="nav-num">21</span> Missão 1</a>
+<a href="saberiumlivrodospoderes.html" target="_blank" class="external-link"><span class="nav-num">22</span> Livro dos Poderes</a>
 
 </nav>
 
@@ -1232,18 +1232,17 @@ const sections = document.querySelectorAll('[id]');
 window.addEventListener('scroll', () => {
   let current = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
-  navLinks.forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-  });
-});
 navLinks.forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth' });
-  });
+    a.addEventListener('click', e => {
+        if (a.classList.contains('external-link')) {
+            return;
+        }
+        e.preventDefault();
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) t.scrollIntoView({ behavior: 'smooth' });
+    });
 });
+
 </script>
 </body>
 </html>
