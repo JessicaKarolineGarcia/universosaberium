@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saberium — Enciclopédia Oficial do Universo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold:#C9A84C;--gold2:#F5C400;--ink:#1A0D3D;--purple:#3D1A6B;--purple2:#6B35C8;
+  --teal:#0E7B8C;--red:#C44B2B;--blue:#1A3A6B;--green:#1B5E35;--lime:#7BC142;
+  --parch:#FDF6E3;--parch2:#F5EDD8;--borrao:#1A1209;--pink:#D4537E;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:#0D0520;font-family:'Nunito',sans-serif;color:#1A0D3D;overflow-x:hidden;}
+
+/* NAV */
+.nav{position:fixed;left:0;top:0;bottom:0;width:210px;background:rgba(13,5,32,.97);
+  border-right:1px solid rgba(201,168,76,.25);padding:1.5rem .75rem;overflow-y:auto;z-index:200;}
+.nav-logo{text-align:center;padding-bottom:1.2rem;border-bottom:1px solid rgba(201,168,76,.2);margin-bottom:1rem;}
+.nav-logo span{font-size:2rem;display:block;}
+.nav-logo strong{font-family:'Cinzel',serif;font-size:.75rem;color:var(--gold);letter-spacing:.2em;}
+.nav a{display:flex;align-items:center;gap:.5rem;padding:.45rem .6rem;margin:.1rem 0;
+  font-size:.62rem;letter-spacing:.08em;color:rgba(245,237,216,.45);text-decoration:none;
+  border-left:2px solid transparent;border-radius:0 4px 4px 0;transition:all .2s;}
+.nav a:hover,.nav a.active{color:var(--gold);border-left-color:var(--gold);background:rgba(201,168,76,.08);}
+.nav-num{font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(201,168,76,.4);flex-shrink:0;}
+
+/* MAIN */
+.main{margin-left:210px;}
+
+/* HERO / CAPA */
+.hero{min-height:100vh;background:linear-gradient(180deg,#0D0520 0%,#1A0840 50%,#2A0E5C 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:4rem 2rem;position:relative;overflow:hidden;}
+.hero-stars{position:absolute;inset:0;
+  background-image:radial-gradient(1px 1px at 15% 25%,rgba(245,196,0,.8),transparent),
+    radial-gradient(1px 1px at 40% 10%,rgba(255,255,255,.6),transparent),
+    radial-gradient(2px 2px at 70% 30%,rgba(201,168,76,.7),transparent),
+    radial-gradient(1px 1px at 85% 15%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 25% 60%,rgba(245,196,0,.5),transparent),
+    radial-gradient(1px 1px at 60% 70%,rgba(255,255,255,.4),transparent),
+    radial-gradient(1px 1px at 90% 55%,rgba(201,168,76,.6),transparent),
+    radial-gradient(2px 2px at 5% 80%,rgba(245,196,0,.4),transparent);}
+.hero-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:400px;background:radial-gradient(ellipse,rgba(107,53,200,.2),transparent 70%);pointer-events:none;}
+.hero-stamp{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.4em;
+  color:rgba(201,168,76,.5);margin-bottom:2.5rem;position:relative;}
+.hero-key{font-size:5rem;margin-bottom:1rem;display:block;animation:float 4s ease-in-out infinite;position:relative;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero h1{font-family:'Cinzel',serif;font-size:5.5rem;font-weight:900;line-height:1;
+  background:linear-gradient(135deg,#F5C400,#C9A84C,#F5EDD8);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.4rem;position:relative;}
+.hero-sub{font-family:'Cinzel',serif;font-style:italic;font-size:1.2rem;
+  color:rgba(245,237,216,.6);margin-bottom:2.5rem;letter-spacing:.1em;}
+.hero-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem auto;max-width:400px;}
+.hero-divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.hero-divider-gem{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+.hero-frase{font-size:1.05rem;color:rgba(245,237,216,.55);font-style:italic;max-width:500px;line-height:1.9;}
+.hero-scroll{position:absolute;bottom:2.5rem;font-family:'DM Mono',monospace;font-size:.55rem;
+  letter-spacing:.25em;color:rgba(201,168,76,.35);animation:pulse 2.5s infinite;}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:.8}}
+
+/* CAPÍTULOS */
+.cap{border-bottom:1px solid rgba(245,196,0,.1);}
+.cap-header{padding:3rem 3.5rem 2rem;background:linear-gradient(180deg,rgba(107,53,200,.06),transparent);
+  border-bottom:1px solid rgba(201,168,76,.15);display:flex;align-items:flex-start;gap:1.5rem;}
+.cap-num{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:var(--gold);
+  border:1px solid var(--gold);padding:.3rem .75rem;flex-shrink:0;margin-top:.6rem;background:rgba(201,168,76,.05);}
+.cap-title-block .ch{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.25em;
+  color:rgba(107,53,200,.7);margin-bottom:.4rem;text-transform:uppercase;}
+.cap-title{font-family:'Cinzel',serif;font-size:2rem;font-weight:600;
+  background:linear-gradient(135deg,#1A0D3D,#3D1A6B);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.cap-body{padding:2.5rem 3.5rem;}
+
+/* CADA SEÇÃO TEM FUNDO ALTERNADO */
+.cap:nth-child(odd){background:#FDFBF7;}
+.cap:nth-child(even){background:#F8F4FF;}
+
+/* TIPOGRAFIA */
+.lead{font-size:.95rem;line-height:1.95;color:#2A1A50;margin-bottom:1.5rem;}
+.p{font-size:.85rem;line-height:1.85;color:#4A3570;margin-bottom:1rem;}
+.lbl{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;
+  color:rgba(107,53,200,.6);margin:.bottom:.5rem;margin-top:2rem;display:block;}
+.quote{border-left:3px solid var(--gold2);padding:1rem 1.4rem;
+  background:rgba(245,196,0,.06);font-style:italic;font-size:.9rem;
+  color:#2A1A50;line-height:1.9;margin:1.5rem 0;border-radius:0 8px 8px 0;}
+.quote-purple{border-left-color:var(--purple2);background:rgba(107,53,200,.05);}
+.quote-red{border-left-color:var(--red);background:rgba(196,75,43,.04);color:var(--red);}
+hr.orn{border:none;margin:2rem 0;text-align:center;}
+hr.orn::before{content:'✦  ·  ✦  ·  ✦';color:rgba(201,168,76,.4);font-size:.8rem;letter-spacing:.8em;}
+
+/* NARRATIVE */
+.narrative{background:rgba(107,53,200,.04);border:1px solid rgba(107,53,200,.15);
+  padding:2rem 2.5rem;margin:1.5rem 0;border-radius:12px;position:relative;}
+.narrative::before{content:'"';position:absolute;top:.3rem;left:1.2rem;
+  font-family:'Cinzel',serif;font-size:6rem;color:rgba(245,196,0,.12);line-height:1;}
+.narrative p{font-style:italic;font-size:.88rem;color:#2A1A50;line-height:2;
+  padding-left:1.5rem;margin-bottom:.9rem;}
+.narrative p:last-child{margin-bottom:0;}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin:1.5rem 0;}
+
+/* CARD */
+.card{border:1px solid rgba(107,53,200,.15);padding:1.25rem;background:white;
+  border-radius:10px;box-shadow:0 2px 8px rgba(107,53,200,.06);}
+.card-icon{font-size:1.5rem;margin-bottom:.7rem;display:block;}
+.card-title{font-family:'Cinzel',serif;font-size:.9rem;font-weight:600;color:#1A0D3D;margin-bottom:.35rem;}
+.card-sub{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--purple2);margin-bottom:.35rem;}
+.card-text{font-size:.76rem;line-height:1.7;color:#4A3570;}
+
+/* PERSONAGEM */
+.per{border:1px solid rgba(107,53,200,.15);margin:1.5rem 0;border-radius:16px;
+  overflow:hidden;display:grid;grid-template-columns:270px 1fr;box-shadow:0 4px 20px rgba(107,53,200,.1);}
+.per-vis{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2.5rem 1.5rem;position:relative;}
+.per-emoji{font-size:4rem;margin-bottom:.75rem;}
+.per-nome{font-family:'Cinzel',serif;font-size:1.1rem;font-weight:600;color:white;text-align:center;}
+.per-titulo{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.15em;
+  color:rgba(255,255,255,.6);text-align:center;margin-top:.2rem;}
+.per-info{padding:2rem;}
+.per-quote{font-style:italic;font-size:.8rem;color:#2A1A50;border-left:2px solid var(--gold);
+  padding-left:.75rem;margin:1rem 0;line-height:1.7;}
+.attrs{display:flex;flex-wrap:wrap;gap:.35rem;margin:.6rem 0;}
+.attr{font-size:.62rem;padding:.2rem .55rem;border:1px solid rgba(107,53,200,.2);
+  color:#4A3570;background:rgba(107,53,200,.05);border-radius:20px;}
+.per-sec-t{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(107,53,200,.6);margin-bottom:.4rem;margin-top:1rem;}
+.per-sec-p{font-size:.77rem;line-height:1.7;color:#4A3570;}
+
+/* AURORA ESPECIAL */
+.aurora-box{border:2px solid rgba(127,58,191,.4);border-radius:20px;margin:1.5rem 0;
+  overflow:hidden;box-shadow:0 8px 30px rgba(127,58,191,.15);}
+.aurora-header{background:linear-gradient(135deg,#2A0D4F,#1A0A35);
+  padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;}
+.aurora-left{text-align:center;}
+.aurora-emoji{font-size:5rem;display:block;margin-bottom:1rem;
+  filter:drop-shadow(0 0 20px rgba(196,160,232,.5));}
+.aurora-nome{font-family:'Cinzel',serif;font-size:1.8rem;font-weight:900;
+  background:linear-gradient(135deg,#C4A0E8,#E8D0FF);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.aurora-titulo{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.2em;
+  color:rgba(196,160,232,.6);margin-top:.3rem;}
+.aurora-right{}
+.aurora-frase{font-style:italic;font-size:.9rem;color:rgba(245,237,216,.7);
+  border-left:2px solid rgba(196,160,232,.4);padding-left:1rem;line-height:1.9;margin-bottom:1rem;}
+.aurora-attrs{display:flex;flex-wrap:wrap;gap:.4rem;}
+.aurora-attr{font-size:.62rem;padding:.2rem .55rem;border:1px solid rgba(196,160,232,.3);
+  color:rgba(196,160,232,.8);border-radius:20px;}
+.aurora-body{padding:2rem;}
+.aurora-secret{border:1px solid rgba(127,58,191,.3);padding:1.25rem;
+  background:rgba(127,58,191,.04);border-radius:10px;margin:1rem 0;}
+.aurora-secret-t{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.15em;
+  color:var(--purple2);margin-bottom:.4rem;text-transform:uppercase;}
+.aurora-secret-p{font-size:.76rem;color:#4A3570;line-height:1.65;}
+
+/* VOGAIS */
+.vogais-row{display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;margin:1.5rem 0;}
+.vogal{border:2px solid;text-align:center;padding:1.25rem .75rem;border-radius:12px;
+  position:relative;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.08);}
+.v-bg{position:absolute;inset:0;opacity:.07;}
+.v-L{font-family:'Cinzel',serif;font-size:3rem;font-weight:900;line-height:1;
+  margin-bottom:.25rem;position:relative;}
+.v-N{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:.35rem;position:relative;}
+.v-I{font-size:.95rem;margin-bottom:.3rem;position:relative;display:block;}
+.v-B{font-style:italic;font-size:.66rem;line-height:1.5;position:relative;}
+.v-P{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.06em;
+  margin-top:.4rem;position:relative;}
+
+/* EMBARALHADORES */
+.emb-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;}
+.emb{border:1px solid rgba(122,63,0,.2);padding:1.1rem;background:white;
+  border-radius:10px;border-left:3px solid #7A3F00;}
+.emb-N{font-family:'Cinzel',serif;font-size:.88rem;font-weight:600;color:#1A0D3D;margin-bottom:.2rem;}
+.emb-B{font-style:italic;font-size:.7rem;color:#7A3F00;margin-bottom:.4rem;}
+.emb-D{font-size:.73rem;color:#4A3570;line-height:1.6;}
+
+/* LUGARES */
+.lugar{border:1px solid rgba(107,53,200,.12);margin-bottom:1rem;border-radius:12px;
+  overflow:hidden;display:grid;grid-template-columns:5px 1fr;box-shadow:0 2px 8px rgba(107,53,200,.06);}
+.lugar-bar{}
+.lugar-body{padding:1.25rem;background:white;}
+.lugar-header{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;}
+.lugar-icon{font-size:1.2rem;}
+.lugar-nome{font-family:'Cinzel',serif;font-size:.95rem;font-weight:600;color:#1A0D3D;}
+.lugar-tag{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;color:#6B53A0;}
+.lugar-desc{font-size:.77rem;line-height:1.7;color:#4A3570;margin-bottom:.6rem;}
+.lugar-pills{display:flex;flex-wrap:wrap;gap:.4rem;}
+.pill{font-size:.62rem;padding:.18rem .55rem;border:1px solid rgba(107,53,200,.15);
+  color:#4A3570;background:rgba(107,53,200,.05);border-radius:20px;}
+
+/* REGRAS */
+.regra{display:grid;grid-template-columns:40px 1fr;gap:1rem;padding:1rem;
+  border-bottom:1px solid rgba(201,168,76,.15);align-items:start;}
+.regra:last-child{border-bottom:none;}
+.regra-num{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:600;color:var(--gold2);}
+.regra-nome{font-weight:700;font-size:.83rem;color:#1A0D3D;margin-bottom:.2rem;}
+.regra-desc{font-size:.76rem;color:#4A3570;line-height:1.65;}
+
+/* MISSÃO LOOP */
+.loop{border:2px solid rgba(245,196,0,.3);padding:2rem;border-radius:16px;
+  margin:1.5rem 0;background:rgba(245,196,0,.03);}
+.loop-t{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;
+  color:var(--gold);margin-bottom:1.5rem;text-align:center;}
+.loop-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.ls{padding:1rem .75rem;text-align:center;border-right:1px solid rgba(201,168,76,.15);position:relative;}
+.ls:last-child{border-right:none;}
+.ls::after{content:'→';position:absolute;right:-7px;top:50%;transform:translateY(-50%);
+  color:var(--gold);font-size:.65rem;z-index:1;}
+.ls:last-child::after{display:none;}
+.ls-num{font-family:'DM Mono',monospace;font-size:.5rem;color:var(--gold);margin-bottom:.3rem;}
+.ls-icon{font-size:1.2rem;margin-bottom:.3rem;display:block;}
+.ls-nome{font-size:.7rem;font-weight:600;color:#1A0D3D;margin-bottom:.15rem;}
+.ls-desc{font-size:.6rem;color:#6B53A0;line-height:1.4;}
+
+/* SELOS */
+.selos-t{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.18em;
+  text-transform:uppercase;color:#6B53A0;margin-bottom:.5rem;
+  padding-bottom:.35rem;border-bottom:1px solid rgba(107,53,200,.12);}
+.selos-g{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;margin-bottom:1.5rem;}
+.selo{border:1px solid rgba(107,53,200,.15);padding:.65rem;display:flex;align-items:center;
+  gap:.55rem;background:white;border-radius:8px;box-shadow:0 1px 4px rgba(107,53,200,.05);}
+.selo-i{font-size:1.1rem;flex-shrink:0;}
+.selo-n{font-size:.73rem;font-weight:600;color:#1A0D3D;}
+.selo-w{font-size:.6rem;color:#6B53A0;margin-top:.08rem;}
+
+/* CARDS EXEMPLOS */
+.cards-ex{display:flex;gap:1rem;margin:1.5rem 0;flex-wrap:wrap;}
+.sc{width:135px;border:3px solid;flex-shrink:0;border-radius:12px;overflow:hidden;
+  background:white;box-shadow:0 4px 12px rgba(0,0,0,.1);}
+.sc-top{padding:.38rem;text-align:center;font-family:'Cinzel',serif;font-size:1.2rem;font-weight:600;}
+.sc-art{height:62px;display:flex;align-items:center;justify-content:center;
+  border-top:2px solid;border-bottom:2px solid;font-family:'Cinzel',serif;font-weight:900;}
+.sc-bars{padding:.38rem .48rem;background:white;}
+.sc-br{display:flex;align-items:center;gap:.25rem;margin-bottom:.18rem;}
+.sc-bl{font-family:'DM Mono',monospace;font-size:.44rem;width:50px;flex-shrink:0;}
+.sc-bt{flex:1;height:4px;background:rgba(0,0,0,.07);border-radius:2px;}
+.sc-bf{height:4px;border-radius:2px;}
+.sc-ab{padding:.38rem .48rem;border-top:2px solid;background:white;}
+.sc-an{font-weight:700;font-size:.56rem;margin-bottom:1px;}
+.sc-ad{font-size:.5rem;color:#6B53A0;line-height:1.3;}
+.sc-rar{text-align:center;padding:.28rem;font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;}
+
+/* RARIDADE */
+.rar-g{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin:1rem 0;}
+.rar{border:3px solid;padding:.65rem .5rem;text-align:center;border-radius:10px;}
+.rar-l{font-weight:700;font-size:.72rem;margin-bottom:.2rem;}
+.rar-ltrs{font-family:'DM Mono',monospace;font-size:.54rem;line-height:1.4;}
+
+/* JOGOS TABELA */
+.jtable{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.74rem;border-radius:10px;overflow:hidden;}
+.jtable th{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(107,53,200,.7);text-align:left;padding:.55rem .75rem;background:rgba(107,53,200,.06);font-weight:500;}
+.jtable td{padding:.65rem .75rem;border-bottom:1px solid rgba(107,53,200,.08);color:#2A1A50;vertical-align:top;}
+.jtable tr:last-child td{border-bottom:none;}
+.jtable tr:hover td{background:rgba(245,196,0,.04);}
+.jb{display:inline-block;font-family:'DM Mono',monospace;font-size:.52rem;
+  padding:.1rem .42rem;letter-spacing:.06em;font-weight:600;border-radius:4px;}
+
+/* ATLAS */
+.atlas-box{border:2px solid rgba(245,196,0,.4);padding:2rem;border-radius:16px;
+  margin:1.5rem 0;background:rgba(245,196,0,.03);display:grid;grid-template-columns:190px 1fr;gap:2rem;}
+.atlas-capa{background:linear-gradient(135deg,#1A3A6B,#0D1F3C);padding:1.5rem 1rem;
+  text-align:center;border:2px solid rgba(201,168,76,.4);border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.atlas-cap-t{font-family:'Cinzel',serif;font-size:.75rem;color:var(--gold);letter-spacing:.2em;}
+.atlas-foto{width:48px;height:48px;border:1px dashed rgba(201,168,76,.4);display:flex;
+  align-items:center;justify-content:center;font-size:.52rem;color:rgba(201,168,76,.45);border-radius:4px;}
+.atlas-linha{width:80%;height:1px;background:rgba(201,168,76,.3);}
+.atlas-stamp{border:1.5px solid var(--red);padding:2px 7px;font-family:'DM Mono',monospace;
+  font-size:.42rem;letter-spacing:.1em;color:var(--red);transform:rotate(-2deg);
+  display:inline-block;opacity:.8;border-radius:3px;}
+.atlas-pgs{display:flex;flex-direction:column;gap:.65rem;}
+.atlas-pg{border:1px solid rgba(107,53,200,.12);padding:.7rem 1rem;background:white;
+  border-radius:8px;box-shadow:0 1px 4px rgba(107,53,200,.05);}
+.atlas-pg-t{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;
+  color:rgba(107,53,200,.7);margin-bottom:.45rem;}
+.stamps-row{display:flex;gap:.3rem;flex-wrap:wrap;}
+.stc{width:32px;height:32px;border-radius:50%;border:2px solid;display:flex;
+  align-items:center;justify-content:center;font-family:'DM Mono',monospace;
+  font-size:.34rem;letter-spacing:.02em;text-align:center;line-height:1.2;font-weight:600;}
+.std{opacity:1;}.ste{border-style:dashed;opacity:.3;}
+
+/* CHAVE */
+.chave-box{border:2px solid rgba(245,196,0,.4);padding:2.5rem;
+  background:linear-gradient(135deg,rgba(245,196,0,.05),rgba(245,196,0,.02));
+  text-align:center;margin:1.5rem 0;border-radius:16px;}
+.chave-sym{font-size:3.5rem;margin-bottom:1rem;display:block;}
+.chave-t{font-family:'Cinzel',serif;font-size:1.2rem;color:#1A0D3D;margin-bottom:.6rem;}
+.chave-d{font-size:.8rem;color:#4A3570;line-height:1.75;max-width:420px;margin:0 auto 1.2rem;}
+.chave-uses{display:flex;justify-content:center;gap:.55rem;flex-wrap:wrap;}
+.chave-use{font-size:.62rem;padding:.2rem .65rem;border:1px solid rgba(201,168,76,.35);
+  color:rgba(139,105,20,1);background:rgba(245,196,0,.08);border-radius:20px;}
+
+/* PREÇOS */
+.preco-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.preco{border:1px solid rgba(107,53,200,.15);padding:1.5rem;text-align:center;
+  background:white;border-radius:14px;box-shadow:0 2px 10px rgba(107,53,200,.07);}
+.preco.feat{border-color:var(--gold);background:rgba(245,196,0,.04);}
+.preco-badge{display:inline-block;font-size:.56rem;padding:.18rem .55rem;
+  background:var(--gold);color:white;margin-bottom:.4rem;border-radius:20px;
+  font-family:'DM Mono',monospace;letter-spacing:.1em;}
+.preco-lbl{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.15em;
+  color:#6B53A0;margin-bottom:.4rem;text-transform:uppercase;}
+.preco-val{font-family:'Cinzel',serif;font-size:2.2rem;font-weight:600;color:#1A0D3D;}
+.preco-per{font-size:.66rem;color:#6B53A0;margin-bottom:.4rem;}
+.preco-d{font-size:.68rem;color:#4A3570;line-height:1.5;}
+
+/* FRASES */
+.frases-g{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;}
+.frase{border:1px solid rgba(107,53,200,.12);padding:1.25rem;background:white;
+  text-align:center;border-radius:12px;box-shadow:0 2px 8px rgba(107,53,200,.06);}
+.frase-t{font-style:italic;font-size:.86rem;color:#2A1A50;line-height:1.85;margin-bottom:.5rem;}
+.frase-a{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.12em;color:#6B53A0;}
+
+/* RODAPÉ */
+.rodape{background:linear-gradient(180deg,#0D0520,#1A0840);padding:5rem 2rem;
+  text-align:center;margin-left:0;}
+.rodape-key{font-size:3rem;margin-bottom:1rem;display:block;}
+.rodape-t{font-family:'Cinzel',serif;font-size:1.8rem;
+  background:linear-gradient(135deg,#F5C400,#C9A84C);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;}
+.rodape-f{font-style:italic;font-size:.9rem;color:rgba(245,237,216,.4);
+  margin-bottom:2rem;line-height:1.9;}
+.equipe{display:flex;justify-content:center;gap:3rem;margin:2rem 0;}
+.eq{text-align:center;}
+.eq-pct{font-family:'Cinzel',serif;font-size:2rem;
+  background:linear-gradient(135deg,#F5C400,#C9A84C);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;}
+.eq-nome{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.15em;
+  color:rgba(245,237,216,.45);margin-top:.2rem;}
+.eq-papel{font-size:.6rem;color:rgba(245,237,216,.25);margin-top:.12rem;}
+.rodape-linha{width:60px;height:1px;background:rgba(201,168,76,.15);margin:.8rem auto;}
+.rodape-meta{font-family:'DM Mono',monospace;font-size:.54rem;letter-spacing:.18em;
+  color:rgba(201,168,76,.25);line-height:2.5;}
+
+/* VISUAL PREVIEW BOX */
+.visual-preview{border-radius:14px;overflow:hidden;border:2px solid rgba(107,53,200,.15);
+  margin:1.5rem 0;box-shadow:0 8px 24px rgba(107,53,200,.1);}
+.visual-preview img{width:100%;display:block;}
+.visual-preview-caption{padding:.75rem 1rem;background:rgba(107,53,200,.05);
+  font-size:.7rem;color:#6B53A0;font-style:italic;}
+
+/* MAGIA */
+.magia-g{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0;}
+.magia{border:1px solid rgba(107,53,200,.15);padding:1.25rem;background:white;
+  border-radius:10px;border-top:3px solid var(--gold2);}
+.magia-num{font-family:'Cinzel',serif;font-size:1.5rem;color:rgba(245,196,0,.3);margin-bottom:.3rem;}
+.magia-nome{font-family:'Cinzel',serif;font-size:.88rem;font-weight:600;color:#1A0D3D;margin-bottom:.35rem;}
+.magia-desc{font-size:.75rem;color:#4A3570;line-height:1.65;}
+
+/* EXPAND */
+.exp-g{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1.5rem 0;}
+.exp{border:1px solid rgba(107,53,200,.12);padding:1rem;text-align:center;
+  background:white;border-radius:10px;box-shadow:0 1px 6px rgba(107,53,200,.06);}
+.exp-i{font-size:1.6rem;margin-bottom:.5rem;display:block;}
+.exp-n{font-size:.76rem;font-weight:600;color:#1A0D3D;margin-bottom:.2rem;}
+.exp-d{font-size:.63rem;color:#6B53A0;line-height:1.4;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{display:none;}.main{margin-left:0;}
+  .cap-header,.cap-body{padding:1.5rem;}
+  .g3,.g4{grid-template-columns:1fr 1fr;}
+  .vogais-row{grid-template-columns:repeat(3,1fr);}
+  .per,.aurora-header{grid-template-columns:1fr;}
+  .loop-steps{grid-template-columns:1fr;}
+  .atlas-box{grid-template-columns:1fr;}
+  .exp-g{grid-template-columns:repeat(2,1fr);}
+  .preco-g{grid-template-columns:1fr;}
+  .hero h1{font-size:3rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="nav-logo">
+  <span>🗝️</span>
+  <strong>SABERIUM</strong>
+</div>
+<a href="#hero"><span class="nav-num">00</span> Início</a>
+<a href="#cap01"><span class="nav-num">01</span> O que é</a>
+<a href="#cap02"><span class="nav-num">02</span> A Origem</a>
+<a href="#cap03"><span class="nav-num">03</span> As Regras</a>
+<a href="#cap04"><span class="nav-num">04</span> O Mapa</a>
+<a href="#cap05"><span class="nav-num">05</span> Personagens</a>
+<a href="#cap06"><span class="nav-num">06</span> Aurora</a>
+<a href="#cap07"><span class="nav-num">07</span> Vogais</a>
+<a href="#cap08"><span class="nav-num">08</span> Embaralhadores</a>
+<a href="#cap09"><span class="nav-num">09</span> O Explorador</a>
+<a href="#cap10"><span class="nav-num">10</span> Os Guardiões</a>
+<a href="#cap11"><span class="nav-num">11</span> A Magia</a>
+<a href="#cap12"><span class="nav-num">12</span> Missões</a>
+<a href="#cap13"><span class="nav-num">13</span> Cards</a>
+<a href="#cap14"><span class="nav-num">14</span> Atlas e Poderes</a>
+<a href="#cap15"><span class="nav-num">15</span> Estrutura</a>
+<a href="#cap16"><span class="nav-num">16</span> Teatro e Jogos</a>
+<a href="#cap17"><span class="nav-num">17</span> Pedagógico</a>
+<a href="#cap18"><span class="nav-num">18</span> Expansão</a>
+<a href="#cap19"><span class="nav-num">19</span> Frases Oficiais</a>
+</nav>
+
+<div class="main">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="hero-stars"></div>
+<div class="hero-glow"></div>
+<div class="hero-stamp">Documento Oficial · v4.0 · Uso Exclusivo da Equipe</div>
+<span class="hero-key">🗝️</span>
+<h1>SABERIUM</h1>
+<p class="hero-sub">Enciclopédia Oficial do Universo</p>
+<div class="hero-divider">
+  <div class="hero-divider-line"></div>
+  <div class="hero-divider-gem"></div>
+  <div class="hero-divider-line"></div>
+</div>
+<p class="hero-frase">"Aprender é a magia que mantém o universo vivo."</p>
+<div class="hero-scroll">▼ role para explorar ▼</div>
+</section>
+
+<!-- 01 -->
+<section class="cap" id="cap01">
+<div class="cap-header">
+  <div class="cap-num">01</div>
+  <div class="cap-title-block">
+    <div class="ch">O Conceito</div>
+    <h2 class="cap-title">O que é o Saberium?</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Saberium é um universo mágico-pedagógico onde o conhecimento ganha vida através das letras, sons, palavras e imaginação. Nesse mundo, aprender não é uma obrigação — é uma aventura.</p>
+<div class="narrative">
+  <p>Cada letra possui energia própria. Cada som molda partes do reino. Cada palavra tem poder. E toda criança que entra no Saberium se torna um Explorador do Conhecimento.</p>
+  <p>A criança não sente que está estudando. Ela sente que está salvando um reino.</p>
+</div>
+<div class="g3">
+  <div class="card"><span class="card-icon">🌌</span><div class="card-title">Universo Pedagógico</div><p class="card-text">Um mundo completo com lógica interna, personagens, lugares e reinos que a criança explora ao longo de anos.</p></div>
+  <div class="card"><span class="card-icon">💛</span><div class="card-title">Método Afetivo</div><p class="card-text">O aprendizado passa pelo coração antes de chegar à cabeça. Emoção como porta de entrada.</p></div>
+  <div class="card"><span class="card-icon">✨</span><div class="card-title">Experiência Inesquecível</div><p class="card-text">Sílabas viram pontes, sons viram criaturas, leitura desbloqueia caminhos e escrita ativa magia.</p></div>
+</div>
+<div class="quote">"Aprender é brincar. E quanto mais a criança brinca, mais ela aprende — porque corpo e mente não são duas coisas separadas."</div>
+<div class="g3">
+  <div class="card" style="border-left:3px solid var(--red);opacity:.75;"><div class="card-title" style="color:var(--red);">❌ Não é um curso</div><p class="card-text">Há missões, desafios e conquistas — não aulas, provas ou avaliações.</p></div>
+  <div class="card" style="border-left:3px solid var(--red);opacity:.75;"><div class="card-title" style="color:var(--red);">❌ Não é apostila</div><p class="card-text">Há história para viver e mundo para salvar — não páginas para preencher mecanicamente.</p></div>
+  <div class="card" style="border-left:3px solid var(--red);opacity:.75;"><div class="card-title" style="color:var(--red);">❌ Não é método tradicional</div><p class="card-text">Cada atividade tem uma razão narrativa — a criança sabe por que está fazendo.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 02 -->
+<section class="cap" id="cap02">
+<div class="cap-header">
+  <div class="cap-num">02</div>
+  <div class="cap-title-block">
+    <div class="ch">Mitologia</div>
+    <h2 class="cap-title">A Origem do Saberium</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="narrative">
+  <p>Antes do Saberium existir, não havia mundos, nem letras, nem nomes. Havia apenas o Silêncio Branco — um vazio infinito onde nada podia ser dito, lembrado ou imaginado.</p>
+  <p>Até que algo aconteceu. Um Traço surgiu. Ninguém sabe de onde veio. Ele não falava, não tinha rosto, não tinha destino. Mas tinha algo mais poderoso: a capacidade de criar forma a partir do vazio.</p>
+  <p>Quando se moveu pela primeira vez, o nada virou linha. A linha virou caminho. O caminho virou símbolo. O símbolo virou mundo. Assim nasceu o Saberium — não como um lugar, mas como um desenho inacabado que espera ser completado por quem aprende.</p>
+</div>
+<div class="g3">
+  <div class="card"><span class="card-icon">⬜</span><div class="card-title">O Silêncio Branco</div><p class="card-text">O estado original do universo. Sem forma, sem letra, sem história. Ainda existe nos cantos onde o Borrão avançou — lugares que perderam o nome voltam ao Silêncio Branco.</p></div>
+  <div class="card"><span class="card-icon">✏️</span><div class="card-title">O Primeiro Traço</div><p class="card-text">O evento que criou tudo. Não foi planejado — aconteceu. Por isso o Saberium tem natureza de descoberta: não foi construído com intenção, foi revelado por movimento.</p></div>
+  <div class="card"><span class="card-icon">🌌</span><div class="card-title">O Saberium</div><p class="card-text">Não é um planeta. É o que acontece dentro de cada mente quando alguém aprende algo novo. O Saberium existe porque alguém está aprendendo agora.</p></div>
+</div>
+<div class="quote quote-red">O Borrão nasceu do primeiro erro do Traço — uma fração de segundo de hesitação onde o grafite escorregou. Essa mancha não desapareceu. Ficou no canto do Saberium, crescendo lentamente. O Borrão é literalmente o erro do Traço — e por isso os dois são opostos naturais eternos.</div>
+</div>
+</section>
+
+<!-- 03 -->
+<section class="cap" id="cap03">
+<div class="cap-header">
+  <div class="cap-num">03</div>
+  <div class="cap-title-block">
+    <div class="ch">Lógica do Universo</div>
+    <h2 class="cap-title">As Regras do Saberium</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Todo universo forte tem regras. As do Saberium refletem verdades reais sobre como o aprendizado funciona.</p>
+<div class="regra"><div class="regra-num">I</div><div><div class="regra-nome">Nomear é criar</div><div class="regra-desc">No Saberium, dizer o nome correto de algo faz aquilo existir mais completamente. Uma palavra escrita existe. Falada, existe mais. Entendida, existe completamente. A precisão linguística é literalmente magia.</div></div></div>
+<div class="regra"><div class="regra-num">II</div><div><div class="regra-nome">O Traço só cria o que a criança imagina</div><div class="regra-desc">O Traço amplifica — não inventa. Sem uma criança para guiá-lo, ele é apenas potencial esperando direção. É por isso que crianças são convocadas.</div></div></div>
+<div class="regra"><div class="regra-num">III</div><div><div class="regra-nome">Crianças veem o que adultos não veem</div><div class="regra-desc">Adultos que pararam de aprender não entram no reino inteiro. Crianças em processo de descoberta têm acesso irrestrito — porque ainda não decidiram que algo é impossível.</div></div></div>
+<div class="regra"><div class="regra-num">IV</div><div><div class="regra-nome">Letras precisam ser pronunciadas para permanecer fortes</div><div class="regra-desc">As letras se alimentam de sons pronunciados em voz alta. Cada leitura em voz alta as deixa mais brilhantes por horas. Letras sem ser pronunciadas ficam pálidas — latentes, esperando.</div></div></div>
+<div class="regra"><div class="regra-num">V</div><div><div class="regra-nome">O esquecimento é reversível, mas tem custo</div><div class="regra-desc">Tudo que foi esquecido pode ser relembrado — mas a versão relembrada é um pouco mais pálida. Por isso revisar importa: cada revisão devolve cor ao que estava desbotando.</div></div></div>
+<div class="regra"><div class="regra-num">VI</div><div><div class="regra-nome">O Borrão cresce no silêncio pedagógico</div><div class="regra-desc">Não qualquer silêncio — só o de quando havia algo a aprender e foi evitado. Uma criança dormindo não alimenta o Borrão. Uma brincando também não. Só o abandono do aprendizado.</div></div></div>
+<div class="regra"><div class="regra-num">VII</div><div><div class="regra-nome">A Luz do Saber só permanece em quem sustenta lembrança + imaginação</div><div class="regra-desc">Essa é a regra que explica Aurora. Quando alguém deixa de acreditar em si mesmo, a conexão com o Saberium enfraquece — mesmo que ainda lembre dos caminhos.</div></div></div>
+<div class="regra"><div class="regra-num">VIII</div><div><div class="regra-nome">O Saberium responde à lembrança viva compartilhada</div><div class="regra-desc">Sozinha, Aurora não sustenta o mundo. Sozinha, a criança não entende o que está acontecendo. Juntas, estabilizam o Saberium — porque ele responde à lembrança compartilhada, não à memória individual.</div></div></div>
+</div>
+</section>
+
+<!-- 04 -->
+<section class="cap" id="cap04">
+<div class="cap-header">
+  <div class="cap-num">04</div>
+  <div class="cap-title-block">
+    <div class="ch">Cartografia Oficial</div>
+    <h2 class="cap-title">O Mapa do Reino das Letras</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">O mapa é o elemento visual mais importante do produto. Cada lugar tem cor dominante, função pedagógica, atmosfera e personagens próprios. A estética mistura fantasia vibrante estilo RPG com arquitetura mágica e letras vivas.</p>
+
+<div class="lugar" style="border-color:rgba(245,196,0,.3);">
+  <div class="lugar-bar" style="background:#F5C400;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🌸</span><div><div class="lugar-nome">Praça das Vogais</div><div class="lugar-tag">Amarelo intenso · Introdução aos sons</div></div></div>
+    <p class="lugar-desc">A praça mais alegre e barulhenta do reino. As cinco vogais moram aqui, cada uma com personalidade, cor e poder próprios. Uma fonte central jorra sons em vez de água. As famílias de palavras mais simples habitam esta região: AMOR, ANEL, OVAL.</p>
+    <div class="lugar-pills"><span class="pill">Vogais A, E, I, O, U</span><span class="pill">Missões 1 e 2</span><span class="pill">Consciência fonológica</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(26,58,107,.3);">
+  <div class="lugar-bar" style="background:#1A3A6B;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🏘️</span><div><div class="lugar-nome">Bairro das Consoantes</div><div class="lugar-tag">Azul cobalto · Exploração fonética</div></div></div>
+    <p class="lugar-desc">Ruas movimentadas, casas com letras nas fachadas, prédios que guardam famílias de palavras. Sem uma vogal por perto, as consoantes ficam em repouso — emitem um zumbido suave, seu estado de quietude. As famílias BOLA, CAMA, DATA vivem aqui.</p>
+    <div class="lugar-pills"><span class="pill">Todas as consoantes</span><span class="pill">Missões 3 e 4</span><span class="pill">Relação som-letra</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(123,193,66,.3);">
+  <div class="lugar-bar" style="background:#7BC142;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🌲</span><div><div class="lugar-nome">Floresta dos Sons</div><div class="lugar-tag">Verde limão · Origem de todos os fonemas</div></div></div>
+    <p class="lugar-desc">Os sons existem aqui antes de virarem letras — é o lugar mais antigo do reino. No centro fica a Grande Pauta: árvore altíssima com tronco de pauta musical, cujas folhas brilham quando alguém aprende um som novo. As sete Árvores dos Tons (Dó, Ré, Mi, Fá, Sol, Lá, Si) guardam cada uma uma família de sons. As músicas do Saberium nascem aqui.</p>
+    <div class="lugar-pills"><span class="pill">A Grande Pauta</span><span class="pill">7 Árvores dos Tons</span><span class="pill">Músicas das missões</span><span class="pill">Jogo Musical futuro</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(201,168,76,.4);">
+  <div class="lugar-bar" style="background:#C9A84C;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🌉</span><div><div class="lugar-nome">Ponte das Sílabas</div><div class="lugar-tag">Pedra + dourado · Formação silábica · O clique</div></div></div>
+    <p class="lugar-desc">A ponte mais importante do reino — sobre o Rio do Saber, onde palavras flutuam na superfície como nenúfares. Cada tijolo representa uma sílaba aprendida por qualquer Explorador no mundo. A ponte nunca está completamente pronta. O momento em que uma criança forma sua primeira sílaba — o clique — é o som mais bonito que existe no Saberium.</p>
+    <div class="lugar-pills"><span class="pill">Rio do Saber abaixo</span><span class="pill">Missões 4 e 5</span><span class="pill">Formação silábica CV</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(139,26,26,.3);">
+  <div class="lugar-bar" style="background:#8B1A1A;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">👑</span><div><div class="lugar-nome">Palácio do Rei ABC</div><div class="lugar-tag">Vinho + dourado · Centro do reino</div></div></div>
+    <p class="lugar-desc">Imponente, com torres que carregam letras iluminadas no topo. No interior, uma grande biblioteca circular rodeia o trono do Rei ABC — a Memória Viva integrada ao palácio. O Explorador nunca entra durante as missões. Só ao completar o Jogo 1 inteiro a porta principal se abre pela primeira vez. É o destino final — não o ponto de partida.</p>
+    <div class="lugar-pills"><span class="pill">Rei ABC reside aqui</span><span class="pill">Só abre ao completar Jogo 1</span><span class="pill">A Memória Viva integrada</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(74,27,107,.3);">
+  <div class="lugar-bar" style="background:#4A1B6B;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">📚</span><div><div class="lugar-nome">Biblioteca do Saberium — A Memória Viva</div><div class="lugar-tag">Púrpura profundo · Vocabulário e compreensão</div></div></div>
+    <p class="lugar-desc">As palavras aqui não estão arquivadas — estão vivas porque foram lembradas. Os livros são compostos pelos ecos de todas as crianças que já as leram. As prateleiras chegam a um teto que não existe. O pó aqui não é sujeira — são partículas de letras flutuantes. Murmúrios de palavras sendo relembradas preenchem o ar como harmonia.</p>
+    <div class="lugar-pills"><span class="pill">Palavras completamente aprendidas</span><span class="pill">A Grande Teia de conexões</span><span class="pill">Compreensão e vocabulário</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(42,42,42,.3);filter:saturate(.5);">
+  <div class="lugar-bar" style="background:#2A2A2A;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🌑</span><div><div class="lugar-nome">Mundo do Borrão</div><div class="lugar-tag">Cinza manchado · Encolhe conforme a criança aprende</div></div></div>
+    <p class="lugar-desc">No canto do mapa — dessaturado, manchado. Formas que deveriam ser letras mas foram apagadas até virar borrões irreconhecíveis. Não é assustador porque é sombrio — é assustador porque parece quase normal, só que vazio de significado. Encolhe a cada missão completada.</p>
+    <div class="lugar-pills"><span class="pill">Território do Borrão</span><span class="pill">Encolhe com o aprendizado</span><span class="pill">Desafios e batalhas</span></div>
+  </div>
+</div>
+
+<div class="lugar" style="border-color:rgba(196,75,43,.3);">
+  <div class="lugar-bar" style="background:#C44B2B;"></div>
+  <div class="lugar-body">
+    <div class="lugar-header"><span class="lugar-icon">🐉</span><div><div class="lugar-nome">Montanhas do Eco — Caverna do Brasa</div><div class="lugar-tag">Marrom queimado · Lar de Cora e Brasa</div></div></div>
+    <p class="lugar-desc">Atrás da Floresta dos Sons. A caverna de Brasa tem paredes cobertas de marcas — séculos de garras criando registros. Aurora sabe ler essas marcas: são históricos de todos os Embaralhadores que Brasa viu passar. O Borrão nunca entra lá — o calor o impede.</p>
+    <div class="lugar-pills"><span class="pill">Cora e o dragão Brasa</span><span class="pill">Atividade com materiais reais</span></div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 05 -->
+<section class="cap" id="cap05">
+<div class="cap-header">
+  <div class="cap-num">05</div>
+  <div class="cap-title-block">
+    <div class="ch">Personagens Principais</div>
+    <h2 class="cap-title">Traço, Rei ABC, Borrão e Cora</h2>
+  </div>
+</div>
+<div class="cap-body">
+
+<div class="per">
+  <div class="per-vis" style="background:linear-gradient(135deg,#1A3A6B,#0D1F3C);">
+    <span class="per-emoji">✏️</span>
+    <div class="per-nome">Traço</div>
+    <div class="per-titulo">O Lápis Protagonista · Interface do Saberium</div>
+  </div>
+  <div class="per-info">
+    <div class="per-sec-t">Origem e natureza</div>
+    <div class="per-sec-p">O primeiro ser do Saberium — o próprio evento que criou o universo, agora com consciência e forma. Não fala com palavras: comunica por desenhos rápidos no ar. Quando a criança acerta, brilha e deixa rastro dourado. Quando erra, apaga e redesenha. Nunca pune — sempre redireciona.</div>
+    <div class="per-sec-t">O grande segredo</div>
+    <div class="per-sec-p">Foi feito para ser usado por alguém. Sem uma criança para guiá-lo, é apenas potencial — uma linha esperando direção. Cada criança que ele encontra foi localizada pelo rastro do próprio nome, registrado desde o nascimento na Grande Pauta.</div>
+    <div class="attrs" style="margin-top:.75rem;"><span class="attr">Sem voz — só desenhos</span><span class="attr">Rastro dourado</span><span class="attr">Nunca pune</span><span class="attr">Amplificador</span></div>
+    <div class="per-quote">"O lápis não desenha o universo sozinho. Ele desenha o universo em parceria com quem imagina."</div>
+  </div>
+</div>
+
+<div class="per">
+  <div class="per-vis" style="background:linear-gradient(135deg,#8B1A1A,#5C0F0F);">
+    <span class="per-emoji">👑</span>
+    <div class="per-nome">Rei ABC</div>
+    <div class="per-titulo">Guardião do Reino das Letras</div>
+  </div>
+  <div class="per-info">
+    <div class="per-sec-t">Quem é</div>
+    <div class="per-sec-p">Formado quando as primeiras letras se organizaram em consciência. É a estrutura viva da alfabetização — mantém a ordem da linguagem, a coerência das palavras, a continuidade do aprendizado. Sabe que se as pessoas pararem de aprender, o reino começa a desaparecer.</div>
+    <div class="per-sec-t">Visual</div>
+    <div class="per-sec-p">Coroa com letras esculpidas, óculos dourados, cetro em formato de lápis gigante, capa com o mapa do reino estampado no verso. Expressão acolhedora — mais avô sábio do que rei severo.</div>
+    <div class="per-quote">"Só quem ainda está aprendendo consegue ver o que está se apagando."</div>
+  </div>
+</div>
+
+<div class="per">
+  <div class="per-vis" style="background:linear-gradient(135deg,#0A0A0A,#1A1A1A);">
+    <span class="per-emoji">🌑</span>
+    <div class="per-nome">Senhor Borrão</div>
+    <div class="per-titulo">A Força do Esquecimento · O Vilão</div>
+  </div>
+  <div class="per-info">
+    <div class="per-sec-t">Natureza</div>
+    <div class="per-sec-p">Feito de tinta escura que borra tudo que toca. Sem formas arredondadas — angular, manchado, com dedos longos. Sua presença dessatura o ambiente ao redor. Encolhe visivelmente quando uma criança aprende algo novo.</div>
+    <div class="per-sec-t">O que come · O que teme</div>
+    <div class="per-sec-p">Come silêncio pedagógico — o silêncio específico do aprendizado abandonado. Teme ser nomeado com precisão: quando a criança descreve exatamente como um som funciona, essa precisão é como luz para ele.</div>
+    <div class="per-sec-t">Personalidade</div>
+    <div class="per-sec-p">Não é raivoso — é paciente. Sabe que o esquecimento é inevitável, é só esperar. Murmura em vez de gritar. Sua voz é estática — palavras que quase fazem sentido mas não chegam lá.</div>
+    <div class="per-quote" style="border-left-color:var(--red);color:var(--red);">"Tudo que existe... pode ser... esque..." — nunca termina uma frase com clareza.</div>
+  </div>
+</div>
+
+<div class="per">
+  <div class="per-vis" style="background:linear-gradient(135deg,#3D0A00,#1A0500);">
+    <div style="text-align:center;">
+      <div style="font-size:2.5rem;margin-bottom:.4rem;">⚔️</div>
+      <div class="per-nome">Cora</div>
+      <div class="per-titulo">A Cavaleira Fundadora</div>
+      <hr style="border:none;border-top:1px solid rgba(240,153,123,.2);margin:.7rem 0;width:80%;margin-left:auto;margin-right:auto;">
+      <div style="font-size:2rem;margin-bottom:.3rem;">🐉</div>
+      <div style="font-family:'Cinzel',serif;font-size:.8rem;color:#C9A84C;">Brasa</div>
+      <div style="font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.1em;color:rgba(201,168,76,.5);">O Dragão Ancestral</div>
+    </div>
+  </div>
+  <div class="per-info">
+    <div class="per-sec-t">Como Cora encontrou o Brasa</div>
+    <div class="per-sec-p">A única Cavaleira com dragão — as outras têm cavalos. Cora chegou ao reino perdida e entrou pela caverna do Brasa pensando ser um atalho. Ficou presa três dias. No terceiro dia, o Brasa a olhou nos olhos e decidiu que ela era corajosa o suficiente para ser sua. Quem aguentou três dias na caverna do Brasa sem gritar merece o dragão.</div>
+    <div class="per-sec-t">O fogo de Brasa</div>
+    <div class="per-sec-p">Não queima letras — elas brilham mais quando ele sopra. Mas o Borrão derrete quando o fogo o toca. Brasa não resolve o problema — abre o espaço para que a criança trabalhe. Não fala: quando irritado, a fumaça das narinas forma letras que flutuam por alguns segundos.</div>
+    <div class="per-quote" style="border-left-color:var(--red);color:var(--red);">"Quando a criança travar, lembre que travar é o momento antes de entender. Não resolva. Espere."</div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- 06 -->
+<section class="cap" id="cap06">
+<div class="cap-header">
+  <div class="cap-num">06</div>
+  <div class="cap-title-block">
+    <div class="ch">Personagem Principal Feminina</div>
+    <h2 class="cap-title">Aurora — A Exploradora que Ficou</h2>
+  </div>
+</div>
+<div class="cap-body">
+
+<div class="aurora-box">
+  <div class="aurora-header">
+    <div class="aurora-left">
+      <span class="aurora-emoji">🌙</span>
+      <div class="aurora-nome">Aurora</div>
+      <div class="aurora-titulo">Antiga Escolhida do Saberium · Eco entre Dois Mundos</div>
+      <div class="aurora-attrs" style="margin-top:1rem;justify-content:center;display:flex;flex-wrap:wrap;gap:.4rem;">
+        <span class="aurora-attr">Corajosa</span><span class="aurora-attr">Intensa</span><span class="aurora-attr">Investigativa</span>
+        <span class="aurora-attr">Impulsiva</span><span class="aurora-attr">Sarcástica</span><span class="aurora-attr">Determinada</span>
+      </div>
+    </div>
+    <div class="aurora-right">
+      <div class="aurora-frase">"O Saberium não está desaparecendo porque foi destruído… ele está desaparecendo porque as pessoas deixaram de acreditar que ele existe."</div>
+      <div class="aurora-frase">"Eu errei aqui também. Mas errei mais rápido do que você — então você já está à frente."</div>
+    </div>
+  </div>
+  <div class="aurora-body">
+    <div class="g2">
+      <div>
+        <div class="per-sec-t">Quem é Aurora</div>
+        <div class="per-sec-p">Uma das poucas crianças que conseguiu criar uma forte conexão com a Luz do Saber no passado. Completou o Jogo 1 e não saiu — não porque não pôde, mas porque escolheu. Tem aparência de 10 a 12 anos — velha o suficiente para ser respeitada, jovem o suficiente para não parecer professora. Age como irmã mais velha: às vezes tira sarro de forma saudável e didática.</div>
+        <div class="per-sec-t">Visual</div>
+        <div class="per-sec-p">Mochila cheia de papéis e anotações. Páginas soltas com símbolos incompletos. Lápis preso atrás da orelha. Desenhos antigos parcialmente apagados. Pequenos sinais de Luz do Saber enfraquecida — um brilho instável ao redor dela.</div>
+      </div>
+      <div>
+        <div class="aurora-secret">
+          <div class="aurora-secret-t">🌒 O Segredo — o núcleo de tudo</div>
+          <div class="aurora-secret-p">Aurora perdeu quase toda a sua Luz do Saber. Não porque falhou — porque deixou de acreditar em si mesma. Com o tempo, começou a duvidar da própria imaginação, deixou de confiar no que sentia, e sua conexão foi enfraquecendo lentamente. Agora sofre o "Desancoramento": esquece detalhes, perde pistas no meio da investigação, não consegue concluir certas conexões. Quando tenta acessar o Saberium sozinha, ele não fixa nela.</div>
+        </div>
+        <div class="aurora-secret" style="margin-top:.5rem;">
+          <div class="aurora-secret-t">💥 Por que ela precisa da criança</div>
+          <div class="aurora-secret-p">A criança funciona como âncora viva. Quando estão juntas: as memórias de Aurora estabilizam, pistas deixam de desaparecer, estruturas antigas despertam. Aurora tem conhecimento e pistas. A criança tem presença total e imaginação intacta. Juntas: co-sustentadoras do Saberium.</div>
+        </div>
+      </div>
+    </div>
+    <hr class="orn">
+    <div class="g3">
+      <div class="card"><span class="card-icon">🎮</span><div class="card-title">No jogo</div><p class="card-text">Às vezes dá pistas erradas porque acha que sabe tudo. Abre portas proibidas por impulso. Gera humor com "claramente é uma péssima ideia... vamos entrar." Representa aprendizado emocional — já falhou antes.</p></div>
+      <div class="card"><span class="card-icon">🔍</span><div class="card-title">Como investiga</div><p class="card-text">Encontra fragmentos de verdade: pedaços de mapas incompletos, nomes que desaparecem quando lidos, memórias de lugares que já não existem. Só consegue fixar as pistas quando a criança está junto.</p></div>
+      <div class="card"><span class="card-icon">💔</span><div class="card-title">Maior medo</div><p class="card-text">Não morrer — deixar de existir dentro da memória do próprio mundo. Virar ruído. Virar borrão. Por isso se agarra à missão com urgência que a criança ainda não entende totalmente.</p></div>
+    </div>
+    <div class="quote quote-purple">"Eu só existo aqui quando alguém acredita comigo." — a cena que define Aurora: ela escreve uma pista no chão do Saberium. O texto começa a desaparecer. Ela entra em pânico. A criança segura a mão dela. A escrita estabiliza.</div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- 07 -->
+<section class="cap" id="cap07">
+<div class="cap-header">
+  <div class="cap-num">07</div>
+  <div class="cap-title-block">
+    <div class="ch">Habitantes do Reino</div>
+    <h2 class="cap-title">As Vogais — Personagens e Cards</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Cada vogal é um personagem individual com personalidade, poder mágico, fraqueza e bordão. Vivem na Praça das Vogais e existem como cards colecionáveis. A Vogal A foi a primeira a ser completamente desenvolvida pela Mylena.</p>
+
+<div class="vogais-row">
+  <div class="vogal" style="border-color:#C44B2B;background:#FFF5F0;">
+    <div class="v-bg" style="background:#C44B2B;"></div>
+    <div class="v-L" style="color:#C44B2B;">A</div>
+    <div class="v-N" style="color:#993C1D;">Aventureira</div>
+    <span class="v-I">🎒</span>
+    <div class="v-B" style="color:#7A2E10;">"Aventura primeiro, medo depois!"</div>
+    <div class="v-P" style="color:#C44B2B;">⚡ Arco Aurora</div>
+  </div>
+  <div class="vogal" style="border-color:#185FA5;background:#F0F6FD;">
+    <div class="v-L" style="color:#185FA5;">E</div>
+    <div class="v-N" style="color:#0C447C;">Elegante</div>
+    <span class="v-I">📖</span>
+    <div class="v-B" style="color:#0C447C;">"Eeee! Excelente!"</div>
+    <div class="v-P" style="color:#185FA5;">🛡️ Escudo Duplo</div>
+  </div>
+  <div class="vogal" style="border-color:#534AB7;background:#F5F4FF;">
+    <div class="v-L" style="color:#534AB7;">I</div>
+    <div class="v-N" style="color:#3C3489;">Criativa</div>
+    <span class="v-I">🎨</span>
+    <div class="v-B" style="color:#3C3489;">"Iiii! Imagine só!"</div>
+    <div class="v-P" style="color:#534AB7;">✨ Eco Agudo</div>
+  </div>
+  <div class="vogal" style="border-color:#0F6E56;background:#F0FBF6;">
+    <div class="v-L" style="color:#0F6E56;">O</div>
+    <div class="v-N" style="color:#085041;">Acolhedora</div>
+    <span class="v-I">🧣</span>
+    <div class="v-B" style="color:#085041;">"Oooo! Olá, amigos!"</div>
+    <div class="v-P" style="color:#0F6E56;">🌊 Guardião do Fim</div>
+  </div>
+  <div class="vogal" style="border-color:#BA7517;background:#FBF4E6;">
+    <div class="v-L" style="color:#854F0B;">U</div>
+    <div class="v-N" style="color:#633806;">Musical</div>
+    <span class="v-I">🎵</span>
+    <div class="v-B" style="color:#633806;">"Uuuu! Vamos cantar!"</div>
+    <div class="v-P" style="color:#BA7517;">🎶 Ressonância</div>
+  </div>
+</div>
+
+<div class="card" style="border-left:3px solid #C44B2B;margin-top:1rem;">
+  <div class="card-title">🔴 Ficha completa — Vogal A (desenvolvida pela Mylena)</div>
+  <div class="g2" style="margin-top:.75rem;">
+    <div>
+      <div class="per-sec-t">Essência e personalidade</div>
+      <div class="per-sec-p">Coragem, começo, energia e descoberta. Intensa, curiosa, corajosa e impulsiva. Ela não espera — entra primeiro. A voz que abre caminhos e a faísca que acende o Reino das Letras.</div>
+      <div class="per-sec-t">Poder mágico — Arco Aurora</div>
+      <div class="per-sec-p">Cria ondas de energia sonora que iluminam letras e despertam palavras adormecidas. Sua flecha de luz é lançada em arco e, onde toca, os sons voltam.</div>
+      <div class="per-sec-t">Fraqueza</div>
+      <div class="per-sec-p">Age antes de pensar e às vezes não ouve os outros. Entra em situações sem avaliar o perigo.</div>
+    </div>
+    <div>
+      <div class="per-sec-t">Cores oficiais</div>
+      <div class="attrs">
+        <span class="attr" style="background:#C44B2B;color:white;border-color:#C44B2B;">Vermelho Coral</span>
+        <span class="attr" style="background:#FF7A29;color:white;border-color:#FF7A29;">Laranja Vibrante</span>
+        <span class="attr" style="background:#C9A84C;color:white;border-color:#C9A84C;">Dourado</span>
+        <span class="attr" style="background:#F5C400;color:#3D2E0F;border-color:#F5C400;">Amarelo-Sol</span>
+        <span class="attr">Creme</span>
+        <span class="attr">Cobre Mágico</span>
+      </div>
+      <div class="per-sec-t">Ela fala assim</div>
+      <div class="per-sec-p">"AAAAAAH, EU TIVE UMA IDEIA!" · "AVANTE!" · "Aventura primeiro, medo depois!" · "Aprender é uma expedição!"</div>
+      <div class="per-sec-t">Lema</div>
+      <div class="per-sec-p" style="font-style:italic;color:#C44B2B;">"Você não precisa estar pronto para começar."</div>
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 08 -->
+<section class="cap" id="cap08">
+<div class="cap-header">
+  <div class="cap-num">08</div>
+  <div class="cap-title-block">
+    <div class="ch">Antagonistas</div>
+    <h2 class="cap-title">Os Embaralhadores</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Palavras esquecidas no meio do aprendizado que ficaram presas num estado intermediário — nem completas, nem apagadas. Quando derrotados, as letras que os compõem se reorganizam em palavras reais e voltam ao reino. Não morrem — se libertam.</p>
+<div class="emb-grid">
+  <div class="emb"><div class="emb-N">Trocadilo</div><div class="emb-B">"Mas são iguais! São iguais! Quas iguais!"</div><div class="emb-D">Troca letras parecidas — B por D, P por Q, M por N. Genuinamente não vê a diferença. Ingênuo e confuso. Quando a criança mostra a distinção, fica surpreso — não com raiva. Representa as trocas fonéticas mais comuns na alfabetização.</div></div>
+  <div class="emb"><div class="emb-N">Sumério</div><div class="emb-B">"Essa você não precisa. Essa fica comigo. Obri-GA-da."</div><div class="emb-D">Esconde sílabas no meio das palavras. Coleciona sílabas perdidas como tesouros — sua corcova é feita de sílabas roubadas que se movem sob a pele. Representa a omissão silábica comum em crianças pequenas.</div></div>
+  <div class="emb"><div class="emb-N">Inversa</div><div class="emb-B">"AMOR ou ROMA — qual a diferença?"</div><div class="emb-D">Coloca letras na ordem errada. BOLA vira LOBA. CAMA vira MACA. Acha que ambas as versões são igualmente válidas. Representa a dificuldade de sequenciamento, comum em TDAH e dislexia.</div></div>
+  <div class="emb"><div class="emb-N">Silêncio</div><div class="emb-B">(nenhum — só mímica exagerada)</div><div class="emb-D">Apaga sons sem avisar. Não fala. Representa os sons que a criança esquece de pronunciar. Só é derrotado quando a criança pronuncia a palavra completa em voz alta, claramente.</div></div>
+</div>
+<div class="quote">Cores de papel velho e letras desbotadas — marrons, laranjas torrados, amarelos sujos. Formas sempre tortas, nunca em ângulo reto. Uma perna mais curta que a outra. Um braço que aponta para direções contraditórias.</div>
+</div>
+</section>
+
+<!-- 09 -->
+<section class="cap" id="cap09">
+<div class="cap-header">
+  <div class="cap-num">09</div>
+  <div class="cap-title-block">
+    <div class="ch">O Herói</div>
+    <h2 class="cap-title">A Criança Exploradora</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">A criança não recebe conteúdo — ela desbloqueia palavras, reconstrói sentidos e ativa o mundo. Cada aprendizado libera um pedaço do reino, registra progresso no Atlas e fortalece a Luz do Saber.</p>
+<div class="narrative">
+  <p>Toda criança que nasce com potencial de aprendizagem emite um sinal invisível no Saberium — uma linha fina dourada registrada na Grande Pauta como uma nota ainda não tocada. Quando o Rei ABC escreve o nome da criança com o Traço, esse lápis reconhece a nota e sabe exatamente onde aquela criança está.</p>
+  <p>A carta chega rasgada. O Borrão tentou impedir. Mas chegou — porque no Saberium, nada verdadeiro deixa de existir por completo.</p>
+</div>
+<div class="g3">
+  <div class="card"><span class="card-icon">🌟</span><div class="card-title">Por que foi escolhida</div><p class="card-text">Não por inteligência — por potencial de aprendizado. O Borrão não afeta quem está em processo de descoberta. Crianças ainda em formação têm acesso irrestrito ao reino.</p></div>
+  <div class="card"><span class="card-icon">⚡</span><div class="card-title">O poder da teimosia</div><p class="card-text">O maior poder do Explorador é voltar depois de errar. O Borrão calcula baseado na suposição de que frustração leva ao abandono. Quando a criança erra e volta no dia seguinte, ele genuinamente não sabe o que fazer.</p></div>
+  <div class="card"><span class="card-icon">🌱</span><div class="card-title">Crianças neurodivergentes</div><p class="card-text">O Saberium não tem modo especial — tem design que funciona para todas. Crianças autistas percebem padrões que outros não veem. Com TDAH chegam mais rápido às bordas mais selvagens da floresta. O reino reage diferente ao jeito de cada um.</p></div>
+</div>
+<div class="quote">O maior segredo que nenhum personagem diz em voz alta: o universo espera que a criança se torne, um dia, um Guardião. O ciclo fecha quando um Explorador vira Guardião — lendo em voz alta a carta do Rei ABC para a próxima geração.</div>
+</div>
+</section>
+
+<!-- 10 -->
+<section class="cap" id="cap10">
+<div class="cap-header">
+  <div class="cap-num">10</div>
+  <div class="cap-title-block">
+    <div class="ch">Os Adultos</div>
+    <h2 class="cap-title">Os Guardiões do Saber</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Qualquer adulto que acompanhe a criança pode ser Guardião: mãe, pai, avó, tio, professor, babá. O que define um Guardião não é o parentesco — é a decisão de participar. Os Guardiões não jogam o jogo — ativam o jogo.</p>
+<div class="quote">O Guardião não mora no reino — é do mundo de fora. Por isso é essencial: o Borrão não consegue afetá-lo. A carta do Rei ABC só revela seu texto completo quando lida em voz alta por uma voz de confiança.</div>
+<span class="lbl">Os 4 Momentos de Passagem</span>
+<div class="regra"><div class="regra-num">1</div><div><div class="regra-nome">Abertura — leitura da carta</div><div class="regra-desc">O Guardião lê em voz alta o pergaminho do Rei ABC. A carta chega com tinta que só aparece quando pronunciada por uma voz de confiança. Sem o Guardião, a carta permanece em branco.</div></div></div>
+<div class="regra"><div class="regra-num">2</div><div><div class="regra-nome">A senha semanal</div><div class="regra-desc">A última atividade de cada semana revela uma sílaba escondida — a senha. O Guardião a guarda e entrega à criança no início da semana seguinte como ritual. Sem a senha, o tabuleiro da semana não abre.</div></div></div>
+<div class="regra"><div class="regra-num">3</div><div><div class="regra-nome">O juramento de batalha</div><div class="regra-desc">Antes da batalha final de cada missão, Guardião e criança fazem juntos um juramento de duas linhas. A criança fala a primeira, o Guardião responde com a segunda.</div></div></div>
+<div class="regra"><div class="regra-num">4</div><div><div class="regra-nome">A entrega do poder</div><div class="regra-desc">Ao completar a missão, o Guardião entrega fisicamente a carta do poder conquistado e assina o verso como testemunha. A criança guarda a carta — é dela, assinada pelo Guardião.</div></div></div>
+</div>
+</section>
+
+<!-- 11 -->
+<section class="cap" id="cap11">
+<div class="cap-header">
+  <div class="cap-num">11</div>
+  <div class="cap-title-block">
+    <div class="ch">Sistema</div>
+    <h2 class="cap-title">Como a Magia Funciona</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="magia-g">
+  <div class="magia"><div class="magia-num">I</div><div class="magia-nome">Nomear é criar</div><div class="magia-desc">Dizer o nome correto de algo faz aquilo existir mais completamente. Escrita existe. Falada, existe mais. Entendida, existe completamente. A precisão linguística é literalmente magia no Saberium.</div></div>
+  <div class="magia"><div class="magia-num">II</div><div class="magia-nome">Sons alimentam letras</div><div class="magia-desc">As letras se alimentam de sons pronunciados em voz alta. Cada leitura em voz alta as deixa mais brilhantes por horas. Letras sem ser pronunciadas ficam pálidas — latentes, esperando.</div></div>
+  <div class="magia"><div class="magia-num">III</div><div class="magia-nome">O clique cria luz</div><div class="magia-desc">Quando uma criança forma pela primeira vez uma combinação de sílabas, há uma explosão de luz na Ponte das Sílabas. O reino inteiro percebe. Esse clique não pode ser forjado — só acontece quando o aprendizado é real.</div></div>
+  <div class="magia"><div class="magia-num">IV</div><div class="magia-nome">A Luz do Saber</div><div class="magia-desc">Cada Explorador ativo emite uma Luz que mantém o reino visível. Quando para de aprender, a luz enfraquece. A Missão de Resgate reacende. Nada é perdido permanentemente — mas o relembrado é um pouco mais pálido.</div></div>
+</div>
+<span class="lbl">O sistema de punição e retorno</span>
+<div class="g3">
+  <div class="card"><div class="card-sub">1 semana de pausa</div><div class="card-title">Embaralhamento leve</div><p class="card-text">O Borrão embaralha algumas sílabas organizadas. Missão de Resgate curta — ~20 min — para reorganizar.</p></div>
+  <div class="card"><div class="card-sub">2–3 semanas de pausa</div><div class="card-title">Território menor tomado</div><p class="card-text">O Borrão avança sobre um lugar menor do mapa. Missão de Resgate média com revisão.</p></div>
+  <div class="card"><div class="card-sub">Pausa longa</div><div class="card-title">Lugar inteiro tomado</div><p class="card-text">O Borrão toma um lugar do mapa. Repete parte da missão anterior para reconquistar. Nada é perdido permanentemente.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 12 -->
+<section class="cap" id="cap12">
+<div class="cap-header">
+  <div class="cap-num">12</div>
+  <div class="cap-title-block">
+    <div class="ch">Gamificação</div>
+    <h2 class="cap-title">O Sistema de Missões e Selos</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="loop">
+  <div class="loop-t">✦ Loop Padrão de Cada Missão ✦</div>
+  <div class="loop-steps">
+    <div class="ls"><div class="ls-num">01</div><span class="ls-icon">📜</span><div class="ls-nome">Pergaminho</div><div class="ls-desc">Lido pelo Guardião. Ritual de entrada no mundo.</div></div>
+    <div class="ls"><div class="ls-num">02</div><span class="ls-icon">🎯</span><div class="ls-nome">Atividades</div><div class="ls-desc">3 por dia — Corpo, Mão, Mente. Ou uma complexa que dura o dia.</div></div>
+    <div class="ls"><div class="ls-num">03</div><span class="ls-icon">⚔️</span><div class="ls-nome">Batalha</div><div class="ls-desc">Confronto com o Embaralhador da missão usando o aprendido.</div></div>
+    <div class="ls"><div class="ls-num">04</div><span class="ls-icon">🏆</span><div class="ls-nome">Recompensa</div><div class="ls-desc">Selo + Card + Carimbo no Atlas. Três objetos físicos distintos.</div></div>
+    <div class="ls"><div class="ls-num">05</div><span class="ls-icon">📜</span><div class="ls-nome">Gancho</div><div class="ls-desc">Próximo pergaminho lacrado. A criança não pode abrir ainda.</div></div>
+  </div>
+</div>
+<span class="lbl">Selos — Jogo 1</span>
+<div class="selos-t">Jogo 1 — Reino das Sílabas Simples</div>
+<div class="selos-g">
+  <div class="selo"><span class="selo-i">🔊</span><div><div class="selo-n">Selo dos Sons</div><div class="selo-w">Missão 1 — vogais e fonemas</div></div></div>
+  <div class="selo"><span class="selo-i">🌺</span><div><div class="selo-n">Selo das Vogais</div><div class="selo-w">Missão 2 — 5 vogais dominadas</div></div></div>
+  <div class="selo"><span class="selo-i">🧭</span><div><div class="selo-n">Selo dos Exploradores</div><div class="selo-w">Missão 3 — primeiras consoantes</div></div></div>
+  <div class="selo"><span class="selo-i">🔤</span><div><div class="selo-n">Selo das Sílabas</div><div class="selo-w">Missão 4 — sílabas simples CV</div></div></div>
+  <div class="selo"><span class="selo-i">🛡️</span><div><div class="selo-n">Guardião das Palavras</div><div class="selo-w">Missão 5 — palavras completas</div></div></div>
+  <div class="selo"><span class="selo-i">🗝️</span><div><div class="selo-n">Chave do Reino</div><div class="selo-w">Missão 6 — Jogo 1 completo</div></div></div>
+</div>
+<div class="selos-t">Jogo 2 — Reino das Sílabas Complexas</div>
+<div class="selos-g">
+  <div class="selo"><span class="selo-i">🔀</span><div><div class="selo-n">Selo dos Encontros</div><div class="selo-w">Encontros consonantais</div></div></div>
+  <div class="selo"><span class="selo-i">🧩</span><div><div class="selo-n">Selo dos Dígrafos</div><div class="selo-w">LH, NH, CH, RR, SS</div></div></div>
+  <div class="selo"><span class="selo-i">📖</span><div><div class="selo-n">Selo das Famílias</div><div class="selo-w">Famílias de palavras</div></div></div>
+  <div class="selo"><span class="selo-i">⚡</span><div><div class="selo-n">Selo dos Desafios</div><div class="selo-w">Sílabas complexas</div></div></div>
+  <div class="selo"><span class="selo-i">🏰</span><div><div class="selo-n">Defensor do Reino</div><div class="selo-w">Palavras complexas</div></div></div>
+  <div class="selo"><span class="selo-i">🗝️</span><div><div class="selo-n">Chave do Reino</div><div class="selo-w">Jogo 2 completo</div></div></div>
+</div>
+<div class="selos-t">Jogo 3 — Reino da Fluência</div>
+<div class="selos-g">
+  <div class="selo"><span class="selo-i">🌊</span><div><div class="selo-n">Selo do Fluxo</div><div class="selo-w">Lê frases sem pausas</div></div></div>
+  <div class="selo"><span class="selo-i">🎭</span><div><div class="selo-n">Selo da Expressão</div><div class="selo-w">Lê com entonação</div></div></div>
+  <div class="selo"><span class="selo-i">💬</span><div><div class="selo-n">Selo da Compreensão</div><div class="selo-w">Responde sobre o que leu</div></div></div>
+  <div class="selo"><span class="selo-i">✍️</span><div><div class="selo-n">Selo da Escrita</div><div class="selo-w">Produz texto autônomo</div></div></div>
+  <div class="selo"><span class="selo-i">📜</span><div><div class="selo-n">Guardião das Histórias</div><div class="selo-w">Lê e conta histórias</div></div></div>
+  <div class="selo"><span class="selo-i">⭐</span><div><div class="selo-n">Mestre da Leitura</div><div class="selo-w">Alfabetização concluída</div></div></div>
+</div>
+</div>
+</section>
+
+<!-- 13 -->
+<section class="cap" id="cap13">
+<div class="cap-header">
+  <div class="cap-num">13</div>
+  <div class="cap-title-block">
+    <div class="ch">Colecionável</div>
+    <h2 class="cap-title">O Sistema de Cards</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">A mecânica dos cards É a mecânica da alfabetização. Combinar cards para formar sílabas é literalmente aprender a ler. Inspirado em Pokémon e Yu-Gi-Oh — com identidade brasileira e fonética real.</p>
+<div class="cards-ex">
+  <div class="sc" style="border-color:#378ADD;">
+    <div class="sc-top" style="background:#E6F1FB;color:#C44B2B;">A</div>
+    <div class="sc-art" style="background:#E6F1FB;border-color:#378ADD;color:#C44B2B;font-size:2.4rem;">A</div>
+    <div class="sc-bars"><div class="sc-br"><div class="sc-bl" style="color:#0C447C;">Força Sonora</div><div class="sc-bt"><div class="sc-bf" style="width:100%;background:#378ADD;"></div></div></div><div class="sc-br"><div class="sc-bl" style="color:#0C447C;">Energia Siláb.</div><div class="sc-bt"><div class="sc-bf" style="width:92%;background:#378ADD;"></div></div></div></div>
+    <div class="sc-ab" style="border-color:#378ADD;"><div class="sc-an" style="color:#0C447C;">Âncora Vocal</div><div class="sc-ad">A sílaba nunca pode ser embaralhada.</div></div>
+    <div class="sc-rar" style="background:#E6F1FB;color:#0C447C;">— COMUM —</div>
+  </div>
+  <div class="sc" style="border-color:#C9A84C;">
+    <div class="sc-top" style="background:#FBF5E0;color:#8B1A1A;">R</div>
+    <div class="sc-art" style="background:#FBF5E0;border-color:#C9A84C;color:#8B1A1A;font-size:2.4rem;">R</div>
+    <div class="sc-bars"><div class="sc-br"><div class="sc-bl" style="color:#854F0B;">Força Sonora</div><div class="sc-bt"><div class="sc-bf" style="width:88%;background:#C9A84C;"></div></div></div><div class="sc-br"><div class="sc-bl" style="color:#854F0B;">Energia Siláb.</div><div class="sc-bt"><div class="sc-bf" style="width:70%;background:#C9A84C;"></div></div></div></div>
+    <div class="sc-ab" style="border-color:#C9A84C;"><div class="sc-an" style="color:#854F0B;">Trovão do Início</div><div class="sc-ad">No início da sílaba, dobra a Força Sonora.</div></div>
+    <div class="sc-rar" style="background:#FBF5E0;color:#854F0B;">✦ RARO ✦</div>
+  </div>
+  <div class="sc" style="border-color:#7F77DD;">
+    <div class="sc-top" style="background:#EEEDFE;color:#534AB7;font-size:1rem;">LH</div>
+    <div class="sc-art" style="background:#EEEDFE;border-color:#7F77DD;color:#534AB7;font-size:1.6rem;">LH</div>
+    <div class="sc-bars"><div class="sc-br"><div class="sc-bl" style="color:#3C3489;">Força Sonora</div><div class="sc-bt"><div class="sc-bf" style="width:96%;background:#7F77DD;"></div></div></div><div class="sc-br"><div class="sc-bl" style="color:#3C3489;">Energia Siláb.</div><div class="sc-bt"><div class="sc-bf" style="width:80%;background:#7F77DD;"></div></div></div></div>
+    <div class="sc-ab" style="border-color:#7F77DD;"><div class="sc-an" style="color:#3C3489;">Fusão Lendária</div><div class="sc-ad">Nasce apenas quando L + H se unem por conquista.</div></div>
+    <div class="sc-rar" style="background:#EEEDFE;color:#3C3489;">✦ LENDÁRIO ✦</div>
+  </div>
+</div>
+<div class="rar-g">
+  <div class="rar" style="border-color:#378ADD;background:#E6F1FB;"><div class="rar-l" style="color:#0C447C;">Comum</div><div class="rar-ltrs" style="color:#185FA5;">A · E · O · S · R · M</div></div>
+  <div class="rar" style="border-color:#639922;background:#EAF3DE;"><div class="rar-l" style="color:#27500A;">Incomum</div><div class="rar-ltrs" style="color:#3B6D11;">B · C · D · F · L · N · P · T</div></div>
+  <div class="rar" style="border-color:#C9A84C;background:#FBF5E0;"><div class="rar-l" style="color:#633806;">Raro</div><div class="rar-ltrs" style="color:#854F0B;">G · H · J · Q · V · X · Z</div></div>
+  <div class="rar" style="border-color:#7F77DD;background:#EEEDFE;"><div class="rar-l" style="color:#26215C;">Lendário</div><div class="rar-ltrs" style="color:#3C3489;">LH · NH · CH · RR · SS</div></div>
+</div>
+<div class="chave-box">
+  <span class="chave-sym">🗝️</span>
+  <div class="chave-t">A Chave Dourada — Símbolo do Saberium</div>
+  <p class="chave-d">Aparece em todos os jogos, todos os reinos, todos os materiais. A criança que está no Jogo 3 olha para a Chave e lembra que ela estava lá desde o primeiro dia — criando continuidade emocional por anos.</p>
+  <div class="chave-uses">
+    <span class="chave-use">Selo final de cada jogo</span>
+    <span class="chave-use">Abre portas com fechadura</span>
+    <span class="chave-use">Símbolo opcional do brasão</span>
+    <span class="chave-use">Marca d'água de todos os PDFs</span>
+    <span class="chave-use">Lacre dos pergaminhos</span>
+  </div>
+</div>
+</div>
+</section>
+
+<!-- 14 -->
+<section class="cap" id="cap14">
+<div class="cap-header">
+  <div class="cap-num">14</div>
+  <div class="cap-title-block">
+    <div class="ch">Objetos do Explorador</div>
+    <h2 class="cap-title">Atlas e Livro dos Poderes</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Dois objetos distintos, duas funções distintas. <strong>Atlas: onde fui.</strong> <strong>Livro dos Poderes: o que conquistei para usar na batalha.</strong></p>
+<div class="atlas-box">
+  <div class="atlas-capa">
+    <div class="atlas-cap-t">ATLAS</div>
+    <div style="font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.12em;color:rgba(201,168,76,.55);margin-bottom:.65rem;">Passaporte do Saberium</div>
+    <div class="atlas-foto">foto</div>
+    <div class="atlas-linha"></div>
+    <div style="font-family:'DM Mono',monospace;font-size:.42rem;color:rgba(201,168,76,.45);margin:.3rem 0;">nome do explorador</div>
+    <div class="atlas-stamp">SABERIUM · EMITIDO</div>
+  </div>
+  <div class="atlas-pgs">
+    <div class="atlas-pg">
+      <div class="atlas-pg-t">Reino das Letras — Jogo 1</div>
+      <div class="stamps-row">
+        <div class="stc std" style="border-color:#F5C400;background:#FBF5E0;color:#854F0B;font-size:.33rem;">M1<br>Sons</div>
+        <div class="stc std" style="border-color:#F5C400;background:#FBF5E0;color:#854F0B;font-size:.33rem;">M2<br>Vogais</div>
+        <div class="stc ste" style="border-color:#1A3A6B;color:#1A3A6B;font-size:.33rem;">M3</div>
+        <div class="stc ste" style="border-color:#1A3A6B;color:#1A3A6B;font-size:.33rem;">M4</div>
+        <div class="stc ste" style="border-color:#C9A84C;color:#C9A84C;font-size:.33rem;">M5</div>
+        <div class="stc ste" style="border-color:#C9A84C;color:#C9A84C;font-size:.33rem;">🗝️</div>
+      </div>
+    </div>
+    <div class="atlas-pg">
+      <div class="atlas-pg-t">Reino das Letras — Jogo 2</div>
+      <div class="stamps-row">
+        <div class="stc ste" style="border-color:#7F77DD;color:#7F77DD;font-size:.33rem;">M1</div>
+        <div class="stc ste" style="border-color:#7F77DD;color:#7F77DD;font-size:.33rem;">M2</div>
+        <div class="stc ste" style="border-color:#7F77DD;color:#7F77DD;font-size:.33rem;">M3</div>
+        <div class="stc ste" style="border-color:#7F77DD;color:#7F77DD;font-size:.33rem;">M4</div>
+        <div class="stc ste" style="border-color:#7F77DD;color:#7F77DD;font-size:.33rem;">M5</div>
+        <div class="stc ste" style="border-color:#C9A84C;color:#C9A84C;font-size:.33rem;">🗝️</div>
+      </div>
+    </div>
+    <div class="atlas-pg" style="opacity:.45;border-style:dashed;">
+      <div class="atlas-pg-t">Reinos futuros — aguardando novos Exploradores</div>
+      <div style="font-size:.63rem;color:#6B53A0;font-style:italic;">Reino dos Números · Reino dos Mapas · Reino dos Idiomas</div>
+    </div>
+  </div>
+</div>
+<div class="g2">
+  <div class="card" style="border-top:3px solid #1A3A6B;"><div class="card-sub">O Atlas</div><div class="card-title">Passaporte — onde fui</div><p class="card-text">Registra lugares visitados com carimbos coloridos. Tem a Luz do Saber como medidor visual. Páginas dos reinos futuros quase vazias — a criança vê o que ainda vem. Formato passaporte, azul e dourado.</p></div>
+  <div class="card" style="border-top:3px solid #8B1A1A;"><div class="card-sub">O Livro dos Poderes</div><div class="card-title">Grimório — o que conquistei</div><p class="card-text">Álbum de figurinhas do universo. Seção Azul para cards, Seção Dourada para selos, Seção Central para o Brasão em construção. Formato álbum, maior. A professora imprime em papel adesivo.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 15 -->
+<section class="cap" id="cap15">
+<div class="cap-header">
+  <div class="cap-num">15</div>
+  <div class="cap-title-block">
+    <div class="ch">Produto</div>
+    <h2 class="cap-title">Estrutura dos Jogos — BNCC</h2>
+  </div>
+</div>
+<div class="cap-body">
+<p class="lead">Três jogos de alfabetização completa, cada um com 6 missões de 2 meses. O Jogo 1 sozinho é 1 ano de aprendizado. ~500 páginas de material por missão.</p>
+<table class="jtable">
+  <thead><tr><th>Jogo</th><th>Foco</th><th>BNCC</th><th>Duração</th><th>Título Final</th></tr></thead>
+  <tbody>
+    <tr><td><span class="jb" style="border:1px solid #185FA5;color:#185FA5;background:#E6F1FB;">Jogo 1</span></td><td>Vogais, consciência fonológica, sílabas simples CV</td><td>EF01LP02, EF01LP03</td><td>1 ano · 6 missões</td><td>Construtora de Sílabas</td></tr>
+    <tr><td><span class="jb" style="border:1px solid #3B6D11;color:#3B6D11;background:#EAF3DE;">Jogo 2</span></td><td>Sílabas complexas, dígrafos, encontros consonantais</td><td>EF01LP05, EF02LP05</td><td>1 ano · 6 missões</td><td>Decifradora de Palavras</td></tr>
+    <tr><td><span class="jb" style="border:1px solid #854F0B;color:#854F0B;background:#FBF5E0;">Jogo 3</span></td><td>Leitura fluente, compreensão, produção de texto</td><td>EF02LP05, EF02LP06</td><td>1 ano · 6 missões</td><td>Mestre da Leitura</td></tr>
+    <tr><td><span class="jb" style="border:1px solid #3C3489;color:#3C3489;background:#EEEDFE;">Jogo 4</span></td><td>Numeracia, operações, raciocínio lógico</td><td>EF01MA01–EF02MA12</td><td>Em desenvolvimento</td><td>Mestre dos Números</td></tr>
+    <tr><td><span class="jb" style="border:1px solid #085041;color:#085041;background:#E1F5EE;">Jogo 5</span></td><td>Espaço, localização, geografia básica</td><td>EF01GE01–EF03GE06</td><td>Em desenvolvimento</td><td>Exploradora do Mundo</td></tr>
+    <tr><td><span class="jb" style="border:1px solid #993556;color:#993556;background:#FBEAF0;">Jogo 6</span></td><td>Inglês e espanhol iniciais</td><td>EF06LI</td><td>Em desenvolvimento</td><td>Guardiã dos Idiomas</td></tr>
+  </tbody>
+</table>
+<div class="g4">
+  <div class="card"><span class="card-icon">📜</span><div class="card-title">Pergaminho</div><p class="card-text">Lacrado. Lido pelo Guardião. Narrativa da missão em linguagem épica.</p></div>
+  <div class="card"><span class="card-icon">🎯</span><div class="card-title">~120 atividades</div><p class="card-text">3 por dia · 5 dias/semana · 8 semanas. Corpo, Mão e Mente.</p></div>
+  <div class="card"><span class="card-icon">🎵</span><div class="card-title">Música da missão</div><p class="card-text">Gerada no Suno. Nasce na Floresta dos Sons.</p></div>
+  <div class="card"><span class="card-icon">📋</span><div class="card-title">Guia do Guardião</div><p class="card-text">Com intenções BNCC e adaptações para neurodivergentes.</p></div>
+</div>
+<span class="lbl">Precificação</span>
+<div class="preco-g">
+  <div class="preco"><div class="preco-lbl">Lançamento</div><div class="preco-val">R$47</div><div class="preco-per">por missão</div><p class="preco-d">Entrada para validar e gerar primeiras provas sociais.</p></div>
+  <div class="preco feat"><div class="preco-badge">RECOMENDADO</div><div class="preco-lbl">Preço cheio</div><div class="preco-val">R$97</div><div class="preco-per">por missão</div><p class="preco-d">Após validação. Bundle das 6 missões por R$397.</p></div>
+  <div class="preco"><div class="preco-lbl">Licença de turma</div><div class="preco-val">R$247</div><div class="preco-per">por missão · 25 alunos</div><p class="preco-d">R$10 por criança. Argumento imediato para professoras.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 16 -->
+<section class="cap" id="cap16">
+<div class="cap-header">
+  <div class="cap-num">16</div>
+  <div class="cap-title-block">
+    <div class="ch">Experiências</div>
+    <h2 class="cap-title">Teatro, Jogos e Atividades</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="g2">
+  <div>
+    <span class="lbl">O Grande Anfiteatro das Palavras</span>
+    <p class="p">O único lugar onde todos os personagens se reúnem. Episódios especiais são PDFs narrativos maiores — histórias ilustradas para ler juntos. No final, um roteiro curto: a criança encena com o Guardião. Cobre BNCC EF01LP15 e EF01LP16.</p>
+    <div class="attrs">
+      <span class="attr">A história de Cora e Brasa</span>
+      <span class="attr">Como Aurora decidiu ficar</span>
+      <span class="attr">A noite que o Borrão quase apagou a Grande Pauta</span>
+    </div>
+  </div>
+  <div>
+    <span class="lbl">Atividades com materiais de casa</span>
+    <div class="card" style="margin-bottom:.6rem;border-left:3px solid #C44B2B;"><div class="card-title">🐉 Pintar o Brasa</div><p class="card-text">Casca de ovo triturada + pó de café + cola PVA. Textura de escama, cor de brasa antiga. Aplicada com os dedos — não com pincel.</p></div>
+    <div class="card" style="border-left:3px solid #C9A84C;"><div class="card-title">🗝️ A Chave em 3D</div><p class="card-text">Barbante + cola + glitter dourado. Moldado no formato da chave sobre papel manteiga. Seca rígida — vira marcador de página do Atlas.</p></div>
+  </div>
+</div>
+<span class="lbl">Jogos</span>
+<div class="g3">
+  <div class="card"><span class="card-icon">🃏</span><div class="card-title">Batalha das Sílabas</div><p class="card-text">Jogo de cartas — quem forma a sílaba mais forte ganha as cartas. Aprende combinações fonéticas jogando.</p></div>
+  <div class="card"><span class="card-icon">🎱</span><div class="card-title">Bingo dos Sons</div><p class="card-text">Cartela com imagens. O Guardião fala um som — a criança marca objetos que começam com aquele som.</p></div>
+  <div class="card"><span class="card-icon">🎲</span><div class="card-title">O Jogo do Borrão</div><p class="card-text">Cooperativo — todas as crianças contra o Borrão. Formam palavras para recuá-lo antes que chegue ao Palácio.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 17 -->
+<section class="cap" id="cap17">
+<div class="cap-header">
+  <div class="cap-num">17</div>
+  <div class="cap-title-block">
+    <div class="ch">Fundamento</div>
+    <h2 class="cap-title">Guia Pedagógico</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="g2">
+  <div class="card"><div class="card-title">Consciência Fonológica</div><p class="card-text">A Floresta dos Sons e as Vogais trabalham EF01LP02 e EF01LP03 — identificação de fonemas, sílabas, rimas. Antes de ler, a criança precisa ouvir os sons da língua.</p></div>
+  <div class="card"><div class="card-title">Decodificação e Fluência</div><p class="card-text">A Ponte das Sílabas e as missões 4 e 5 trabalham EF01LP05 e EF02LP05 — decodificação de palavras e leitura de textos curtos com fluência crescente.</p></div>
+  <div class="card"><div class="card-title">Produção de Texto</div><p class="card-text">O Lema do Brasão (Missão 4) e a Carta Final (Jogo 3) trabalham EF01LP10 — produção de escrita espontânea com propósito real. A criança não escreve "porque tem que escrever".</p></div>
+  <div class="card"><div class="card-title">Oralidade e Encenação</div><p class="card-text">O Teatro e as atividades de Corpo trabalham EF01LP15 e EF01LP16 — reconto oral e encenação. A voz da criança alimenta as letras do reino.</p></div>
+</div>
+<div class="g2" style="margin-top:1rem;">
+  <div class="card" style="border-top:3px solid #185FA5;"><div class="card-title">Para TDAH</div><p class="card-text">Atividades de 10-15 min com troca de formato a cada etapa. Recompensa imediata e visível. O Guia do Guardião sugere dividir em dois blocos com pausa de movimento. O pergaminho lacrado cria urgência — há sempre um próximo objetivo concreto.</p></div>
+  <div class="card" style="border-top:3px solid #7F3ABF;"><div class="card-title">Para Autismo</div><p class="card-text">Rituais previsíveis e repetidos — o pergaminho sempre chega, o carimbo sempre vai no mesmo lugar do Atlas, o juramento tem sempre as mesmas duas linhas. O Guia do Guardião orienta antecipar o que vai acontecer.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 18 -->
+<section class="cap" id="cap18">
+<div class="cap-header">
+  <div class="cap-num">18</div>
+  <div class="cap-title-block">
+    <div class="ch">Futuro</div>
+    <h2 class="cap-title">A Expansão do Saberium</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="exp-g">
+  <div class="exp"><span class="exp-i">📖</span><div class="exp-n">Livros Graduados</div><p class="exp-d">Com branding do Saberium. Mercado enorme no Brasil.</p></div>
+  <div class="exp"><span class="exp-i">🎵</span><div class="exp-n">Músicas</div><p class="exp-d">Uma por missão, geradas no Suno. Vendíveis separadamente.</p></div>
+  <div class="exp"><span class="exp-i">📦</span><div class="exp-n">Kits Físicos</div><p class="exp-d">Cards plastificados, tabuleiro impresso, envelopes lacrados reais.</p></div>
+  <div class="exp"><span class="exp-i">💳</span><div class="exp-n">Assinatura</div><p class="exp-d">Após 1.000 vendas. Comunidade de Guardiões.</p></div>
+  <div class="exp"><span class="exp-i">🏫</span><div class="exp-n">Licenciamento</div><p class="exp-d">Licença institucional para redes de ensino.</p></div>
+  <div class="exp"><span class="exp-i">🎭</span><div class="exp-n">Teatro</div><p class="exp-d">Episódios especiais em datas comemorativas.</p></div>
+  <div class="exp"><span class="exp-i">🎮</span><div class="exp-n">App Digital</div><p class="exp-d">Mesmo universo, nova plataforma interativa.</p></div>
+  <div class="exp"><span class="exp-i">🌍</span><div class="exp-n">Novos Reinos</div><p class="exp-d">Números, Mapas, Ciências, Idiomas — um reino por vez.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 19 -->
+<section class="cap" id="cap19">
+<div class="cap-header">
+  <div class="cap-num">19</div>
+  <div class="cap-title-block">
+    <div class="ch">Identidade Verbal</div>
+    <h2 class="cap-title">Frases Oficiais do Saberium</h2>
+  </div>
+</div>
+<div class="cap-body">
+<div class="frases-g">
+  <div class="frase"><div class="frase-t">"Aprender é a magia que mantém o universo vivo."</div><div class="frase-a">Frase-conceito oficial</div></div>
+  <div class="frase"><div class="frase-t">"Aprender é brincar. E brincar é desbloquear o mundo."</div><div class="frase-a">Frase do produto</div></div>
+  <div class="frase"><div class="frase-t">"Só quem ainda está aprendendo consegue ver o que está se apagando."</div><div class="frase-a">Rei ABC</div></div>
+  <div class="frase"><div class="frase-t">"O Saberium não está desaparecendo porque foi destruído — ele está desaparecendo porque as pessoas deixaram de acreditar que ele existe."</div><div class="frase-a">Aurora</div></div>
+  <div class="frase"><div class="frase-t">"O lápis não desenha o universo sozinho. Ele desenha o universo em parceria com quem imagina."</div><div class="frase-a">Traço</div></div>
+  <div class="frase"><div class="frase-t">"Eu errei aqui também. Mas errei mais rápido do que você — então você já está à frente."</div><div class="frase-a">Aurora</div></div>
+  <div class="frase"><div class="frase-t">"Quando uma criança aprende a ler, ela não aprende uma habilidade. Ela ganha uma chave."</div><div class="frase-a">A Chave Dourada</div></div>
+  <div class="frase"><div class="frase-t">"Aventura primeiro, medo depois!"</div><div class="frase-a">Vogal A</div></div>
+</div>
+</div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+  <span class="rodape-key">🗝️</span>
+  <h2 class="rodape-t">SABERIUM</h2>
+  <p class="rodape-f">"Enquanto alguém aprende, o Saberium continua existindo.<br>E o Traço continua desenhando."</p>
+  <div class="equipe">
+    <div class="eq"><div class="eq-pct">30%</div><div class="eq-nome">LUARA</div><div class="eq-papel">Pedagoga · Conteúdo</div></div>
+    <div class="eq"><div class="eq-pct">35%</div><div class="eq-nome">MYLENA</div><div class="eq-papel">Designer · Arte</div></div>
+    <div class="eq"><div class="eq-pct">35%</div><div class="eq-nome">JÉSSICA</div><div class="eq-papel">Copywriter · Estratégia</div></div>
+  </div>
+  <div class="rodape-linha"></div>
+  <div class="rodape-meta">ENCICLOPÉDIA OFICIAL DO SABERIUM · v4.0<br>DOCUMENTO INTERNO · USO EXCLUSIVO DA EQUIPE<br>2025 — 2026</div>
+</footer>
+
+</div>
+
+<script>
+const navLinks = document.querySelectorAll('.nav a');
+const sections = document.querySelectorAll('[id]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 200) current = s.id; });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
