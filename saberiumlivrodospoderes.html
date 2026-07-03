@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saberium · Livro dos Poderes · Sistema Completo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta oficial Saberium */
+  --pergaminho:#F5EDD8;
+  --terracota:#C96B4B;
+  --azul:#1A3A6B;
+  --verde:#5B8C5A;
+  --dourado:#C9A84C;
+  --amarelo:#F5C400;
+  --cinza:#3D3D3D;
+
+  /* Aliases funcionais */
+  --ink:#1A3A6B;
+  --gold:#C9A84C;
+  --gold2:#F5C400;
+  --parch:#F5EDD8;
+  --dark:#0D1F3C;
+  --muted:#5B6B7A;
+
+  /* Reinos */
+  --letras-c:#1A3A6B;  --letras-l:#E6EEFA;
+  --vida-c:#5B8C5A;    --vida-l:#EAF2E9;
+  --numeros-c:#C9A84C; --numeros-l:#FBF5E0;
+  --astros-c:#3D3D3D;  --astros-l:#EFEFEF;
+  --artes-c:#C96B4B;   --artes-l:#FCEEE9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#EEF0F5;font-family:'Nunito',sans-serif;color:var(--ink);}
+
+/* NAV */
+.topnav{background:var(--dark);padding:.9rem 2rem;display:flex;align-items:center;gap:1rem;
+  position:sticky;top:0;z-index:100;border-bottom:2px solid var(--gold);}
+.topnav-title{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;color:var(--gold);}
+.topnav-links{display:flex;gap:.4rem;margin-left:auto;flex-wrap:wrap;}
+.topnav-link{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.1em;
+  color:rgba(245,237,216,.45);text-decoration:none;padding:.22rem .55rem;
+  border:1px solid rgba(201,168,76,.25);border-radius:4px;transition:all .2s;}
+.topnav-link:hover{color:var(--gold);border-color:var(--gold);}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#0D1F3C 0%,#1A3A6B 60%,#0D2A1A 100%);
+  padding:5rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.hero-stars{position:absolute;inset:0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%,rgba(245,196,0,.8),transparent),
+    radial-gradient(1px 1px at 38% 8%,rgba(245,237,216,.5),transparent),
+    radial-gradient(2px 2px at 72% 22%,rgba(201,168,76,.6),transparent),
+    radial-gradient(1px 1px at 88% 60%,rgba(245,196,0,.5),transparent),
+    radial-gradient(1.5px 1.5px at 55% 80%,rgba(245,237,216,.4),transparent),
+    radial-gradient(1px 1px at 22% 70%,rgba(201,168,76,.4),transparent),
+    radial-gradient(1px 1px at 95% 35%,rgba(245,237,216,.3),transparent);}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:700px;height:450px;
+  background:radial-gradient(ellipse,rgba(91,140,90,.18),transparent 65%);
+  pointer-events:none;}
+.hero-badge{font-family:'DM Mono',monospace;font-size:.56rem;letter-spacing:.35em;
+  color:rgba(201,168,76,.55);margin-bottom:1.5rem;position:relative;}
+.hero-book{font-size:3.8rem;display:block;margin-bottom:1rem;position:relative;
+  animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero h1{font-family:'Cinzel',serif;font-size:2.8rem;font-weight:900;
+  background:linear-gradient(135deg,var(--amarelo),var(--dourado),var(--pergaminho));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:.5rem;position:relative;}
+.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:.95rem;
+  color:rgba(245,237,216,.5);max-width:480px;margin:.5rem auto 0;line-height:1.9;position:relative;}
+.hero-div{display:flex;align-items:center;gap:1rem;max-width:260px;margin:1.4rem auto;}
+.hdl{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.hdg{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+
+/* PALETA — bloco visual */
+.paleta-strip{background:var(--dark);padding:2rem;display:flex;gap:.75rem;
+  justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(201,168,76,.2);}
+.paleta-chip{border-radius:10px;padding:.7rem .9rem;min-width:88px;text-align:center;}
+.paleta-hex{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.08em;margin-bottom:.3rem;opacity:.7;}
+.paleta-nome{font-family:'Cinzel',serif;font-size:.62rem;font-weight:600;line-height:1.3;}
+.paleta-uso{font-size:.54rem;opacity:.65;line-height:1.4;margin-top:.25rem;}
+
+/* PAGE */
+.page{max-width:940px;margin:0 auto;padding:3rem 2rem 6rem;}
+
+/* SECAO */
+.secao{margin-bottom:4rem;}
+.secao-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;
+  border-bottom:2px solid rgba(26,58,107,.12);}
+.secao-num{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.25em;
+  color:var(--azul);border:1px solid var(--azul);padding:.26rem .65rem;flex-shrink:0;}
+.secao-title{font-family:'Cinzel',serif;font-size:1.55rem;font-weight:600;color:var(--dark);}
+
+/* TYPO */
+.lead{font-size:.88rem;line-height:1.9;color:#1A2A3A;margin-bottom:1.2rem;}
+.p{font-size:.81rem;line-height:1.85;color:#3A4A5A;margin-bottom:.85rem;}
+.lbl{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-top:1.8rem;margin-bottom:.55rem;display:block;}
+.quote{border-left:3px solid var(--dourado);padding:.85rem 1.2rem;
+  background:rgba(201,168,76,.07);font-style:italic;font-size:.85rem;
+  color:#1A2A3A;line-height:1.9;margin:1.2rem 0;border-radius:0 8px 8px 0;}
+hr.orn{border:none;margin:2rem 0;text-align:center;}
+hr.orn::before{content:'✦  ·  ✦  ·  ✦';color:rgba(201,168,76,.3);font-size:.75rem;letter-spacing:.7em;}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin:1.2rem 0;}
+.card{border:1px solid rgba(26,58,107,.1);padding:1.1rem;background:white;
+  border-radius:10px;box-shadow:0 2px 8px rgba(26,58,107,.06);}
+.card-icon{font-size:1.4rem;margin-bottom:.6rem;display:block;}
+.card-title{font-family:'Cinzel',serif;font-size:.85rem;font-weight:600;color:var(--dark);margin-bottom:.28rem;}
+.card-sub{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--azul);margin-bottom:.28rem;}
+.card-text{font-size:.72rem;line-height:1.65;color:#3A4A5A;}
+
+/* POWER CARD */
+.anatomy-container{display:grid;grid-template-columns:220px 1fr;gap:2rem;
+  margin:2rem 0;align-items:start;}
+.power-card-demo{width:210px;border-radius:14px;overflow:hidden;
+  box-shadow:0 8px 24px rgba(26,58,107,.2);flex-shrink:0;}
+.pc-topo{padding:.8rem 1rem .6rem;text-align:center;}
+.pc-reino{font-family:'DM Mono',monospace;font-size:.46rem;letter-spacing:.2em;
+  text-transform:uppercase;opacity:.7;margin-bottom:.3rem;}
+.pc-icon-big{font-size:2.8rem;display:block;margin-bottom:.3rem;}
+.pc-nome{font-family:'Cinzel',serif;font-size:.95rem;font-weight:900;line-height:1.1;}
+.pc-lugar{font-size:.6rem;opacity:.65;margin-top:.2rem;font-style:italic;}
+.pc-divisor{height:2px;opacity:.4;}
+.pc-descricao{padding:.7rem 1rem;font-size:.7rem;line-height:1.65;font-style:italic;}
+.pc-skill{padding:.5rem 1rem;border-top:1px solid;}
+.pc-skill-label{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.15em;opacity:.65;margin-bottom:.2rem;}
+.pc-skill-text{font-size:.67rem;line-height:1.45;}
+.pc-bottom{padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+.pc-stars{display:flex;gap:2px;}
+.pc-star{font-size:.58rem;}
+.pc-rarity{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.12em;opacity:.6;}
+
+/* ZONAS */
+.anatomy-zonas{display:flex;flex-direction:column;gap:.65rem;}
+.zona{display:grid;grid-template-columns:26px 1fr;gap:.6rem;align-items:start;
+  background:white;padding:.75rem;border-radius:8px;border:1px solid rgba(26,58,107,.1);}
+.zona-num{font-family:'Cinzel',serif;font-size:.95rem;color:var(--azul);font-weight:600;text-align:center;}
+.zona-nome{font-weight:700;font-size:.76rem;color:var(--dark);margin-bottom:.12rem;}
+.zona-desc{font-size:.68rem;color:#3A4A5A;line-height:1.6;}
+
+/* RARIDADE */
+.rar-sistema{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;}
+.rar-box{border-radius:12px;padding:1.2rem;text-align:center;}
+.rar-stars-big{font-size:1.1rem;margin-bottom:.5rem;display:block;letter-spacing:.1em;}
+.rar-nome{font-family:'Cinzel',serif;font-size:.88rem;font-weight:600;margin-bottom:.3rem;}
+.rar-desc{font-size:.7rem;line-height:1.6;}
+.rar-exemplos{font-family:'DM Mono',monospace;font-size:.52rem;margin-top:.5rem;opacity:.7;}
+
+/* ÁLBUM */
+.album-demo{background:white;border-radius:16px;padding:2rem;margin:1.5rem 0;
+  box-shadow:0 4px 20px rgba(26,58,107,.1);border:1px solid rgba(26,58,107,.1);}
+.album-capa{background:linear-gradient(135deg,var(--dark),#1A3A6B);
+  border-radius:12px;padding:2rem;text-align:center;margin-bottom:1.5rem;}
+.album-capa-title{font-family:'Cinzel',serif;font-size:1.25rem;color:var(--dourado);margin-bottom:.3rem;}
+.album-capa-sub{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;
+  color:rgba(201,168,76,.5);}
+.album-secoes{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;margin:1rem 0;}
+.album-secao{border-radius:8px;padding:.6rem .4rem;text-align:center;position:relative;}
+.album-secao-icon{font-size:1.1rem;display:block;margin-bottom:.25rem;}
+.album-secao-nome{font-family:'DM Mono',monospace;font-size:.42rem;letter-spacing:.07em;line-height:1.3;}
+.album-secao-lock{position:absolute;top:4px;right:4px;font-size:.52rem;opacity:.5;}
+.album-page-demo{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:1rem;}
+.slot{border-radius:8px;aspect-ratio:2/3;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.3rem;
+  font-family:'DM Mono',monospace;letter-spacing:.05em;text-align:center;padding:.4rem;}
+.slot-icon{font-size:1.2rem;display:block;}
+.slot-name{font-size:.46rem;line-height:1.3;}
+
+/* TABELAS REINO */
+.reino-section{border-radius:14px;overflow:hidden;margin:1.5rem 0;border:1px solid rgba(0,0,0,.07);}
+.reino-header{padding:1.1rem 1.4rem;display:flex;align-items:center;gap:.75rem;}
+.reino-header-icon{font-size:1.45rem;}
+.reino-header-nome{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;}
+.reino-header-area{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;opacity:.7;margin-top:.12rem;}
+.reino-table{width:100%;border-collapse:collapse;}
+.reino-table th{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.09em;
+  text-transform:uppercase;padding:.52rem .8rem;text-align:left;font-weight:500;}
+.reino-table td{padding:.58rem .8rem;border-top:1px solid rgba(255,255,255,.5);
+  font-size:.73rem;vertical-align:top;}
+.lugar-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:.5rem;
+  padding:.1rem .42rem;border-radius:4px;font-weight:500;white-space:nowrap;}
+.poder-nome{font-family:'Cinzel',serif;font-size:.76rem;font-weight:600;color:var(--dark);}
+.poder-desc{font-size:.66rem;color:#3A4A5A;line-height:1.55;margin-top:.12rem;}
+.bncc-tag{font-family:'DM Mono',monospace;font-size:.46rem;opacity:.58;}
+.stars{font-size:.58rem;letter-spacing:.05em;}
+.secreto-tag{font-family:'DM Mono',monospace;font-size:.44rem;letter-spacing:.1em;
+  padding:.08rem .38rem;border-radius:3px;font-weight:700;}
+
+/* CROSS */
+.cross-box{background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(245,196,0,.04));
+  border:2px solid rgba(201,168,76,.3);border-radius:12px;padding:1.5rem;margin:1.5rem 0;}
+.cross-title{font-family:'Cinzel',serif;font-size:.88rem;color:var(--dark);margin-bottom:.4rem;
+  display:flex;align-items:center;gap:.5rem;}
+.cross-desc{font-size:.78rem;color:#1A2A3A;line-height:1.8;margin-bottom:1rem;}
+.cross-examples{display:flex;flex-direction:column;gap:.5rem;}
+.cross-ex{display:flex;align-items:center;gap:.6rem;background:white;
+  padding:.62rem .88rem;border-radius:7px;border:1px solid rgba(201,168,76,.2);}
+.cross-arrow{color:var(--dourado);font-size:.8rem;flex-shrink:0;}
+.cross-poder{font-family:'Cinzel',serif;font-size:.73rem;font-weight:600;color:var(--dark);}
+.cross-info{font-size:.66rem;color:#3A4A5A;line-height:1.5;}
+
+/* MYLENA BOX */
+.mylena-box{background:linear-gradient(135deg,var(--dark),#1A3A6B);
+  border-radius:14px;padding:2rem;margin:2rem 0;}
+.mylena-title{font-family:'Cinzel',serif;font-size:.88rem;color:var(--dourado);
+  margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.mylena-item{display:flex;gap:.75rem;padding:.72rem 0;border-bottom:1px solid rgba(255,255,255,.07);}
+.mylena-item:last-child{border-bottom:none;}
+.mylena-num{font-family:'Cinzel',serif;font-size:.95rem;color:var(--amarelo);flex-shrink:0;width:22px;}
+.mylena-nome{font-weight:700;font-size:.76rem;color:rgba(245,237,216,.9);margin-bottom:.18rem;}
+.mylena-desc{font-size:.68rem;color:rgba(245,237,216,.5);line-height:1.65;}
+
+/* RODAPÉ */
+.rodape{background:var(--dark);padding:3.5rem 2rem;text-align:center;
+  border-top:2px solid var(--dourado);}
+.rodape-key{font-size:2rem;margin-bottom:.7rem;display:block;}
+.rodape-meta{font-family:'DM Mono',monospace;font-size:.48rem;letter-spacing:.16em;
+  color:rgba(201,168,76,.3);line-height:2.5;}
+
+@media(max-width:700px){
+  .anatomy-container,.g3,.g4{grid-template-columns:1fr;}
+  .album-secoes{grid-template-columns:repeat(3,1fr);}
+  .rar-sistema{grid-template-columns:1fr;}
+  .album-page-demo{grid-template-columns:repeat(2,1fr);}
+  .hero h1{font-size:2.1rem;}
+  .paleta-strip{gap:.5rem;}
+  .paleta-chip{min-width:72px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="topnav">
+  <div class="topnav-title">🗝️ SABERIUM · Livro dos Poderes · Sistema Completo</div>
+  <div class="topnav-links">
+    <a class="topnav-link" href="#paleta">Paleta</a>
+    <a class="topnav-link" href="#anatomia">Card</a>
+    <a class="topnav-link" href="#album">Álbum</a>
+    <a class="topnav-link" href="#letras">Letras</a>
+    <a class="topnav-link" href="#vida">Vida</a>
+    <a class="topnav-link" href="#outros">Reinos</a>
+    <a class="topnav-link" href="#cross">Cruzados</a>
+    <a class="topnav-link" href="#mylena">Mylena</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-badge">Documento Interno · Sistema de Poderes · Paleta Oficial</div>
+  <span class="hero-book">📖</span>
+  <h1>Livro dos Poderes</h1>
+  <div class="hero-div"><div class="hdl"></div><div class="hdg"></div><div class="hdl"></div></div>
+  <p class="hero-sub">Sistema completo de cards, álbum e poderes por reino — com paleta visual oficial do Universo Saberium</p>
+</div>
+
+<!-- PALETA OFICIAL -->
+<div class="paleta-strip" id="paleta">
+  <div class="paleta-chip" style="background:#F5EDD8;">
+    <div class="paleta-hex" style="color:#3D3D3D;">#F5EDD8</div>
+    <div class="paleta-nome" style="color:#3D3D3D;">Pergaminho</div>
+    <div class="paleta-uso" style="color:#3D3D3D;">livro · atlas · acolhimento</div>
+  </div>
+  <div class="paleta-chip" style="background:#C96B4B;">
+    <div class="paleta-hex" style="color:white;">#C96B4B</div>
+    <div class="paleta-nome" style="color:white;">Terracota</div>
+    <div class="paleta-uso" style="color:rgba(255,255,255,.8);">aventura · calor · energia</div>
+  </div>
+  <div class="paleta-chip" style="background:#1A3A6B;">
+    <div class="paleta-hex" style="color:rgba(245,237,216,.7);">#1A3A6B</div>
+    <div class="paleta-nome" style="color:#F5EDD8;">Azul Explorador</div>
+    <div class="paleta-uso" style="color:rgba(245,237,216,.7);">descoberta · inteligência</div>
+  </div>
+  <div class="paleta-chip" style="background:#5B8C5A;">
+    <div class="paleta-hex" style="color:rgba(245,237,216,.7);">#5B8C5A</div>
+    <div class="paleta-nome" style="color:#F5EDD8;">Verde Aventura</div>
+    <div class="paleta-uso" style="color:rgba(245,237,216,.7);">floresta · vida · natureza</div>
+  </div>
+  <div class="paleta-chip" style="background:#C9A84C;">
+    <div class="paleta-hex" style="color:white;">#C9A84C</div>
+    <div class="paleta-nome" style="color:white;">Dourado Mágico</div>
+    <div class="paleta-uso" style="color:rgba(255,255,255,.8);">recompensa · conquista</div>
+  </div>
+  <div class="paleta-chip" style="background:#F5C400;">
+    <div class="paleta-hex" style="color:#3D3D3D;">#F5C400</div>
+    <div class="paleta-nome" style="color:#3D3D3D;">Amarelo Descoberta</div>
+    <div class="paleta-uso" style="color:#3D3D3D;">curiosidade · alegria</div>
+  </div>
+  <div class="paleta-chip" style="background:#3D3D3D;">
+    <div class="paleta-hex" style="color:rgba(245,237,216,.6);">#3D3D3D</div>
+    <div class="paleta-nome" style="color:#F5EDD8;">Cinza Apagado</div>
+    <div class="paleta-uso" style="color:rgba(245,237,216,.6);">confusão · Borrão</div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- INTRO -->
+<div class="secao">
+  <div class="secao-header">
+    <div class="secao-num">00</div>
+    <h2 class="secao-title">A Lógica do Sistema</h2>
+  </div>
+  <p class="lead">O poder que a criança ganha <strong>é o aprendizado nomeado de forma épica</strong>. Não é magia genérica — é a habilidade real que ela conquistou, com um nome que faz ela sentir que é extraordinária por ter aprendido aquilo.</p>
+  <div class="quote">"O poder não é dado. É conquistado. A criança que ganhou o Poder da Âncora Vocal aprendeu a identificar vogais em qualquer posição de uma palavra. Ela simplesmente não sabe que isso se chama consciência fonológica. Ela sabe que é uma habilidade do Saberium."</div>
+  <div class="g3">
+    <div class="card">
+      <span class="card-icon">🗺️</span>
+      <div class="card-title">Origem no mapa</div>
+      <p class="card-text">Cada poder nasce de um lugar específico do mapa. A criança passa por aquele lugar, resolve o desafio, e conquista o poder correspondente. Localização = aprendizado.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">📖</span>
+      <div class="card-title">Álbum único vitalício</div>
+      <p class="card-text">O mesmo Livro dos Poderes acompanha a criança por todos os reinos, por anos. Ele nunca é trocado — só expande. Uma seção nova é desbloqueada a cada novo reino adquirido.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌐</span>
+      <div class="card-title">Poderes cruzados</div>
+      <p class="card-text">Alguns poderes do Reino das Letras funcionam no Reino da Vida e vice-versa. Isso dá valor acumulado ao álbum e cria argumento de venda: quem tem mais reinos, pode mais.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ANATOMIA -->
+<div class="secao" id="anatomia">
+  <div class="secao-header">
+    <div class="secao-num">01</div>
+    <h2 class="secao-title">Anatomia do Power Card</h2>
+  </div>
+  <p class="lead">Cada card tem 5 zonas fixas. O layout é sempre o mesmo — o que muda é a cor do reino, o ícone e o conteúdo. Isso garante consistência visual entre todos os reinos.</p>
+
+  <div class="anatomy-container">
+    <!-- Card demo — Azul Explorador (Reino das Letras) -->
+    <div class="power-card-demo">
+      <div class="pc-topo" style="background:linear-gradient(135deg,#E6EEFA,#C5D3F0);">
+        <div class="pc-reino" style="color:#1A3A6B;">✦ Reino das Letras ✦</div>
+        <span class="pc-icon-big">🌊</span>
+        <div class="pc-nome" style="color:#0D1F3C;">Onda Profunda</div>
+        <div class="pc-lugar" style="color:#3A5A8B;">Casa do U · Praça das Vogais</div>
+      </div>
+      <div class="pc-divisor" style="background:#1A3A6B;"></div>
+      <div class="pc-descricao" style="color:#1A2A3A;background:#F5F7FC;">
+        "Com este poder, você consegue criar rimas espontaneamente — ouvir o eco das palavras e fazer novas surgirem."
+      </div>
+      <div class="pc-skill" style="background:#E6EEFA;border-color:#C5D3F0;">
+        <div class="pc-skill-label" style="color:#1A3A6B;">Habilidade conquistada</div>
+        <div class="pc-skill-text" style="color:#0D1F3C;">Produção de rimas · EF12LP07</div>
+      </div>
+      <div class="pc-bottom" style="background:#F5F7FC;">
+        <div class="pc-stars">
+          <span class="pc-star">⭐</span>
+          <span class="pc-star">⭐</span>
+          <span class="pc-star" style="opacity:.2;">⭐</span>
+        </div>
+        <div class="pc-rarity" style="color:#1A3A6B;">INCOMUM</div>
+      </div>
+    </div>
+
+    <!-- Zonas -->
+    <div class="anatomy-zonas">
+      <div class="zona">
+        <div class="zona-num">1</div>
+        <div><div class="zona-nome">Topo — Identidade do Card</div><div class="zona-desc">Cor do reino (muda por reino), ícone central único por poder, nome do poder em Cinzel, lugar de origem no mapa em itálico. É o que a criança vê primeiro.</div></div>
+      </div>
+      <div class="zona">
+        <div class="zona-num">2</div>
+        <div><div class="zona-nome">Divisor — Linha de cor</div><div class="zona-desc">Linha fina na cor principal do reino. Separa visual do conteúdo. Simples e consistente em todos os reinos.</div></div>
+      </div>
+      <div class="zona">
+        <div class="zona-num">3</div>
+        <div><div class="zona-nome">Descrição — Voz da criança</div><div class="zona-desc">Escrito em linguagem da criança, em itálico, primeira pessoa. Sempre começa com "Com este poder, você consegue…"</div></div>
+      </div>
+      <div class="zona">
+        <div class="zona-num">4</div>
+        <div><div class="zona-nome">Habilidade — Tradução pedagógica</div><div class="zona-desc">Nome técnico do aprendizado + código BNCC. A criança não lê — é para a Portadora entender o que aconteceu pedagogicamente.</div></div>
+      </div>
+      <div class="zona">
+        <div class="zona-num">5</div>
+        <div><div class="zona-nome">Rodapé — Raridade</div><div class="zona-desc">Estrelas (1, 2 ou 3) + rótulo: Comum, Incomum, Raro. Cards secretos ficam em branco até a revelação.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 cards demo -->
+  <span class="lbl">Exemplos por reino — mesma anatomia, identidade visual diferente</span>
+  <div class="g3" style="margin-top:.75rem;">
+
+    <!-- Verde Aventura — Vida -->
+    <div class="power-card-demo" style="width:100%;box-shadow:0 4px 14px rgba(91,140,90,.2);">
+      <div class="pc-topo" style="background:linear-gradient(135deg,#EAF2E9,#C3DBC2);">
+        <div class="pc-reino" style="color:#5B8C5A;">✦ Reino da Vida ✦</div>
+        <span class="pc-icon-big">🌱</span>
+        <div class="pc-nome" style="color:#0D1F3C;">Semeador</div>
+        <div class="pc-lugar" style="color:#3A6A39;">Terra Vermelha · Campo do Cerrado</div>
+      </div>
+      <div class="pc-divisor" style="background:#5B8C5A;"></div>
+      <div class="pc-descricao" style="color:#1A3A1A;background:#F3F9F3;">"Com este poder, você entende como uma semente vira planta — e pode fazer isso acontecer com as próprias mãos."</div>
+      <div class="pc-skill" style="background:#C3DBC2;border-color:#A5C7A4;">
+        <div class="pc-skill-label" style="color:#3A6A39;">Habilidade conquistada</div>
+        <div class="pc-skill-text" style="color:#0D1F3C;">Germinação e ciclo de vida · EF01CI05</div>
+      </div>
+      <div class="pc-bottom" style="background:#F3F9F3;">
+        <div class="pc-stars"><span class="pc-star">⭐</span><span class="pc-star" style="opacity:.2;">⭐</span><span class="pc-star" style="opacity:.2;">⭐</span></div>
+        <div class="pc-rarity" style="color:#5B8C5A;">COMUM</div>
+      </div>
+    </div>
+
+    <!-- Dourado — Números -->
+    <div class="power-card-demo" style="width:100%;box-shadow:0 4px 14px rgba(201,168,76,.25);">
+      <div class="pc-topo" style="background:linear-gradient(135deg,#FBF5E0,#F0E0A0);">
+        <div class="pc-reino" style="color:#8B6914;">✦ Reino dos Números ✦</div>
+        <span class="pc-icon-big">⚖️</span>
+        <div class="pc-nome" style="color:#0D1F3C;">Balança do Saber</div>
+        <div class="pc-lugar" style="color:#8B6914;">Praça da Comparação</div>
+      </div>
+      <div class="pc-divisor" style="background:#C9A84C;"></div>
+      <div class="pc-descricao" style="color:#3D2E0F;background:#FFFDF0;">"Com este poder, você sabe qual número é maior e qual é menor — e consegue ordenar qualquer sequência."</div>
+      <div class="pc-skill" style="background:#F0E0A0;border-color:#D4C070;">
+        <div class="pc-skill-label" style="color:#8B6914;">Habilidade conquistada</div>
+        <div class="pc-skill-text" style="color:#0D1F3C;">Comparação e ordem numérica · EF01MA01</div>
+      </div>
+      <div class="pc-bottom" style="background:#FFFDF0;">
+        <div class="pc-stars"><span class="pc-star">⭐</span><span class="pc-star">⭐</span><span class="pc-star" style="opacity:.2;">⭐</span></div>
+        <div class="pc-rarity" style="color:#8B6914;">INCOMUM</div>
+      </div>
+    </div>
+
+    <!-- Secreto — Cinza Apagado -->
+    <div class="power-card-demo" style="width:100%;box-shadow:0 4px 14px rgba(61,61,61,.3);">
+      <div class="pc-topo" style="background:linear-gradient(135deg,#2A2A2A,#1A1A1A);">
+        <div class="pc-reino" style="color:rgba(201,168,76,.4);">✦ ? ? ? ✦</div>
+        <span class="pc-icon-big" style="filter:brightness(0) invert(.25);">❓</span>
+        <div class="pc-nome" style="color:rgba(245,237,216,.25);">? ? ? ? ? ?</div>
+        <div class="pc-lugar" style="color:rgba(245,237,216,.18);">Lugar desconhecido</div>
+      </div>
+      <div class="pc-divisor" style="background:rgba(61,61,61,.8);"></div>
+      <div class="pc-descricao" style="color:rgba(245,237,216,.2);background:#111111;">"Este poder ainda não foi revelado. Ele existe — mas só aparece quando o momento certo chegar."</div>
+      <div class="pc-skill" style="background:#1A1A1A;border-color:rgba(201,168,76,.15);">
+        <div class="pc-skill-label" style="color:rgba(201,168,76,.35);">Poder secreto</div>
+        <div class="pc-skill-text" style="color:rgba(245,237,216,.18);">— — — — —</div>
+      </div>
+      <div class="pc-bottom" style="background:#111111;">
+        <div class="pc-stars"><span class="pc-star" style="opacity:.25;">⭐</span><span class="pc-star" style="opacity:.25;">⭐</span><span class="pc-star" style="opacity:.25;">⭐</span></div>
+        <div class="pc-rarity" style="color:rgba(201,168,76,.3);">SECRETO</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Raridade -->
+  <span class="lbl">Sistema de raridade</span>
+  <div class="rar-sistema">
+    <div class="rar-box" style="background:#EAF2E9;border:2px solid #5B8C5A;">
+      <span class="rar-stars-big" style="color:#5B8C5A;">★ ☆ ☆</span>
+      <div class="rar-nome" style="color:#3A6A39;">Comum</div>
+      <div class="rar-desc" style="color:#3A6A39;">Aprendizado básico. Primeiros contatos com o conteúdo. Conquistado nas atividades regulares da semana.</div>
+      <div class="rar-exemplos" style="color:#5B8C5A;">Voz Desperta · Semeador · Ouvido Aberto</div>
+    </div>
+    <div class="rar-box" style="background:#E6EEFA;border:2px solid #1A3A6B;">
+      <span class="rar-stars-big" style="color:#1A3A6B;">★ ★ ☆</span>
+      <div class="rar-nome" style="color:#0D1F3C;">Incomum</div>
+      <div class="rar-desc" style="color:#1A3A6B;">Aplicação do aprendizado. A criança usa o que sabe em contextos novos. Conquistado ao completar uma semana.</div>
+      <div class="rar-exemplos" style="color:#1A3A6B;">Âncora do Início · Arquiteto · Rastreador</div>
+    </div>
+    <div class="rar-box" style="background:#FBF5E0;border:2px solid #C9A84C;">
+      <span class="rar-stars-big" style="color:#C9A84C;">★ ★ ★</span>
+      <div class="rar-nome" style="color:#8B6914;">Raro</div>
+      <div class="rar-desc" style="color:#6B5230;">Conquista de batalha ou missão completa. O desafio mais difícil de cada lugar. Conquistado no Desafio Final.</div>
+      <div class="rar-exemplos" style="color:#8B6914;">Mestre da Leitura · Guardião · Ponte Viva</div>
+    </div>
+  </div>
+</div>
+
+<!-- ÁLBUM -->
+<div class="secao" id="album">
+  <div class="secao-header">
+    <div class="secao-num">02</div>
+    <h2 class="secao-title">O Livro dos Poderes — O Álbum</h2>
+  </div>
+  <p class="lead">Formato álbum de figurinhas estilo Panini. Cada seção corresponde a um reino. Seções de reinos futuros chegam lacradas. O mesmo livro acompanha a criança por anos.</p>
+
+  <div class="album-demo">
+    <div class="album-capa">
+      <div class="album-capa-title">📖 LIVRO DOS PODERES</div>
+      <div class="album-capa-sub">Universo Saberium · [Nome do Explorador]</div>
+    </div>
+    <span class="lbl">Seções — desbloqueadas conforme os reinos são adquiridos</span>
+    <div class="album-secoes">
+      <div class="album-secao" style="background:#E6EEFA;border:1px solid #A5B8D8;">
+        <span class="album-secao-icon">📚</span>
+        <div class="album-secao-nome" style="color:#1A3A6B;">Reino das Letras</div>
+      </div>
+      <div class="album-secao" style="background:#EAF2E9;border:1px solid #A5C7A4;">
+        <span class="album-secao-icon">🌿</span>
+        <div class="album-secao-nome" style="color:#5B8C5A;">Reino da Vida</div>
+      </div>
+      <div class="album-secao" style="background:#FBF5E0;border:1px dashed rgba(201,168,76,.4);opacity:.45;">
+        <span class="album-secao-icon">🔢</span>
+        <div class="album-secao-nome" style="color:#8B6914;">Números</div>
+        <span class="album-secao-lock">🔒</span>
+      </div>
+      <div class="album-secao" style="background:#EFEFEF;border:1px dashed rgba(61,61,61,.3);opacity:.45;">
+        <span class="album-secao-icon">⭐</span>
+        <div class="album-secao-nome" style="color:#3D3D3D;">Astros</div>
+        <span class="album-secao-lock">🔒</span>
+      </div>
+      <div class="album-secao" style="background:#FCEEE9;border:1px dashed rgba(201,107,75,.35);opacity:.45;">
+        <span class="album-secao-icon">🎨</span>
+        <div class="album-secao-nome" style="color:#C96B4B;">Artes</div>
+        <span class="album-secao-lock">🔒</span>
+      </div>
+      <div class="album-secao" style="background:#E6EEFA;border:1px dashed rgba(26,58,107,.3);opacity:.45;">
+        <span class="album-secao-icon">🌊</span>
+        <div class="album-secao-nome" style="color:#1A3A6B;">Mares</div>
+        <span class="album-secao-lock">🔒</span>
+      </div>
+    </div>
+    <span class="lbl">Página exemplo — Reino das Letras · Praça das Vogais</span>
+    <div class="album-page-demo">
+      <div class="slot" style="background:linear-gradient(135deg,#E6EEFA,#A5B8D8);border:2px solid #1A3A6B;color:#0D1F3C;">
+        <span class="slot-icon">🌅</span>
+        <div class="slot-name">Voz Desperta</div>
+      </div>
+      <div class="slot" style="background:linear-gradient(135deg,#E6EEFA,#A5B8D8);border:2px solid #1A3A6B;color:#0D1F3C;">
+        <span class="slot-icon">⚓</span>
+        <div class="slot-name">Âncora do Início</div>
+      </div>
+      <div class="slot" style="border:2px dashed #1A3A6B;color:#1A3A6B;opacity:.22;">
+        <span class="slot-icon">🛡️</span>
+        <div class="slot-name">Escudo do Eco</div>
+      </div>
+      <div class="slot" style="border:2px dashed #1A3A6B;color:#1A3A6B;opacity:.22;">
+        <span class="slot-icon">👁️</span>
+        <div class="slot-name">Olho Agudo</div>
+      </div>
+    </div>
+    <p style="font-size:.66rem;color:var(--muted);margin-top:.75rem;font-style:italic;text-align:center;">Cards preenchidos = conquistados. Cards em sombra = a criança sabe que existem e quer completar.</p>
+  </div>
+
+  <div class="g2">
+    <div class="card" style="border-top:3px solid #1A3A6B;">
+      <div class="card-title">Slots preenchidos</div>
+      <p class="card-text">Card imprimível em papel adesivo. A criança recorta e cola no slot correspondente. A sombra desaparece quando o card chega — revelação física e satisfatória.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #C9A84C;">
+      <div class="card-title">Slots secretos</div>
+      <p class="card-text">Três por reino. Não aparecem como sombra — o espaço está em branco. Quando o poder secreto é conquistado, um slot novo aparece como se o universo o revelasse.</p>
+    </div>
+  </div>
+</div>
+
+<!-- REINO DAS LETRAS -->
+<div class="secao" id="letras">
+  <div class="secao-header">
+    <div class="secao-num">03</div>
+    <h2 class="secao-title">Reino das Letras · Todos os Poderes</h2>
+  </div>
+
+  <!-- Praça das Vogais -->
+  <div class="reino-section">
+    <div class="reino-header" style="background:linear-gradient(135deg,#C9A84C,#8B6914);">
+      <span class="reino-header-icon">🌸</span>
+      <div>
+        <div class="reino-header-nome" style="color:#F5EDD8;">Praça das Vogais</div>
+        <div class="reino-header-area" style="color:rgba(245,237,216,.65);">Missões 1 e 2 · Consciência fonológica · Sons e vogais</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#FBF5E0;"><th style="color:#8B6914;">Lugar</th><th style="color:#8B6914;">Poder</th><th style="color:#8B6914;">O que representa</th><th style="color:#8B6914;">BNCC</th><th style="color:#8B6914;">★</th></tr></thead>
+      <tbody style="background:#FFFEF5;">
+        <tr><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Fonte das Vozes</span></td><td><div class="poder-nome">Voz Desperta</div></td><td><div class="poder-desc">Reconhecer os sons das vogais oralmente</div></td><td><span class="bncc-tag">EF01LP02</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr style="background:#FAFAF5;"><td><span class="lugar-tag" style="background:#FCEEE9;color:#C96B4B;">Casa do A</span></td><td><div class="poder-nome">Âncora do Início</div></td><td><div class="poder-desc">Identificar vogal inicial nas palavras</div></td><td><span class="bncc-tag">EF01LP09</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#E6EEFA;color:#1A3A6B;">Casa do E</span></td><td><div class="poder-nome">Escudo do Eco</div></td><td><div class="poder-desc">Perceber vogal no meio das palavras</div></td><td><span class="bncc-tag">EF01LP09</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+        <tr style="background:#FAFAF5;"><td><span class="lugar-tag" style="background:#EFEFEF;color:#3D3D3D;">Casa do I</span></td><td><div class="poder-nome">Olho Agudo</div></td><td><div class="poder-desc">Discriminar sons semelhantes</div></td><td><span class="bncc-tag">EF01LP02</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#EAF2E9;color:#5B8C5A;">Casa do O</span></td><td><div class="poder-nome">Coração Sonoro</div></td><td><div class="poder-desc">Identificar rimas</div></td><td><span class="bncc-tag">EF12LP07</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr style="background:#FAFAF5;"><td><span class="lugar-tag" style="background:#FBF5E0;color:#8B6914;">Casa do U</span></td><td><div class="poder-nome">Onda Profunda</div></td><td><div class="poder-desc">Produzir rimas espontaneamente</div></td><td><span class="bncc-tag">EF12LP07</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+        <tr style="background:#FBF5E0;"><td><span class="lugar-tag" style="background:#0D1F3C;color:#C9A84C;">SECRETO</span></td><td><div class="poder-nome" style="color:#C9A84C;">?</div></td><td><div class="poder-desc" style="color:#C9A84C;">Revelado em condição especial da missão</div></td><td>—</td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Floresta dos Sons -->
+  <div class="reino-section" style="margin-top:1rem;">
+    <div class="reino-header" style="background:linear-gradient(135deg,#5B8C5A,#3A6A39);">
+      <span class="reino-header-icon">🌲</span>
+      <div>
+        <div class="reino-header-nome" style="color:white;">Floresta dos Sons</div>
+        <div class="reino-header-area" style="color:rgba(255,255,255,.65);">Missões 1 e 2 · Fonemas · A Grande Pauta</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#EAF2E9;"><th style="color:#3A6A39;">Lugar</th><th style="color:#3A6A39;">Poder</th><th style="color:#3A6A39;">O que representa</th><th style="color:#3A6A39;">BNCC</th><th style="color:#3A6A39;">★</th></tr></thead>
+      <tbody style="background:#F8FDF8;">
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Grande Pauta</span></td><td><div class="poder-nome">Ouvido do Saberium</div></td><td><div class="poder-desc">Consciência fonológica — ouvir pedaços das palavras</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#5B8C5A;">★☆☆</span></td></tr>
+        <tr style="background:#F2FAF2;"><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Árvore Sol</span></td><td><div class="poder-nome">Luz Sonora</div></td><td><div class="poder-desc">Associar som à letra correspondente</div></td><td><span class="bncc-tag">EF01LP08</span></td><td><span class="stars" style="color:#5B8C5A;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Árvore Mi</span></td><td><div class="poder-nome">Eco Fino</div></td><td><div class="poder-desc">Discriminar fonemas parecidos P/B, T/D, F/V</div></td><td><span class="bncc-tag">EF01LP02</span></td><td><span class="stars" style="color:#5B8C5A;">★★☆</span></td></tr>
+        <tr style="background:#F2FAF2;"><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Claro da Floresta</span></td><td><div class="poder-nome">Mapa dos Sons</div></td><td><div class="poder-desc">Contar sílabas de qualquer palavra</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#5B8C5A;">★☆☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Árvore Dó</span></td><td><div class="poder-nome">Passo Grave</div></td><td><div class="poder-desc">Identificar e comparar sons graves e agudos</div></td><td><span class="bncc-tag">EF01AR10</span></td><td><span class="stars" style="color:#5B8C5A;">★★★</span></td></tr>
+        <tr style="background:#EAF2E9;"><td><span class="lugar-tag" style="background:#0D1F3C;color:#C9A84C;">SECRETO</span></td><td><div class="poder-nome" style="color:#C9A84C;">?</div></td><td><div class="poder-desc" style="color:#C9A84C;">Ativado quando todas as 7 árvores forem visitadas</div></td><td>—</td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ponte das Sílabas -->
+  <div class="reino-section" style="margin-top:1rem;">
+    <div class="reino-header" style="background:linear-gradient(135deg,#C9A84C,#6B5010);">
+      <span class="reino-header-icon">🌉</span>
+      <div>
+        <div class="reino-header-nome" style="color:#F5EDD8;">Ponte das Sílabas</div>
+        <div class="reino-header-area" style="color:rgba(245,237,216,.65);">Missões 3 e 4 · Formação silábica · O clique</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#FBF5E0;"><th style="color:#8B6914;">Lugar</th><th style="color:#8B6914;">Poder</th><th style="color:#8B6914;">O que representa</th><th style="color:#8B6914;">BNCC</th><th style="color:#8B6914;">★</th></tr></thead>
+      <tbody style="background:#FFFEF8;">
+        <tr><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Primeiro tijolo</span></td><td><div class="poder-nome">Construtor Silábico</div></td><td><div class="poder-desc">Formar sílabas simples CV — BA, CA, LA</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr style="background:#FAFAF0;"><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Metade da ponte</span></td><td><div class="poder-nome">Arquiteto das Sílabas</div></td><td><div class="poder-desc">Formar palavras com duas sílabas</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Travessia completa</span></td><td><div class="poder-nome">Ponte Viva</div></td><td><div class="poder-desc">Ler palavras dissílabas com fluência</div></td><td><span class="bncc-tag">EF01LP05</span></td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+        <tr style="background:#FAFAF0;"><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Rio do Saber</span></td><td><div class="poder-nome">Navegador</div></td><td><div class="poder-desc">Identificar sílabas em qualquer posição da palavra</div></td><td><span class="bncc-tag">EF01LP09</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bairro das Consoantes -->
+  <div class="reino-section" style="margin-top:1rem;">
+    <div class="reino-header" style="background:linear-gradient(135deg,#1A3A6B,#0D1F3C);">
+      <span class="reino-header-icon">🏘️</span>
+      <div>
+        <div class="reino-header-nome" style="color:white;">Bairro das Consoantes</div>
+        <div class="reino-header-area" style="color:rgba(255,255,255,.6);">Missões 3–6 · Sons consonantais · Relação letra-som</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#E6EEFA;"><th style="color:#1A3A6B;">Lugar</th><th style="color:#1A3A6B;">Poder</th><th style="color:#1A3A6B;">O que representa</th><th style="color:#1A3A6B;">BNCC</th><th style="color:#1A3A6B;">★</th></tr></thead>
+      <tbody style="background:#F8FBFF;">
+        <tr><td><span class="lugar-tag" style="background:#C5D3F0;color:#1A3A6B;">Estação das Sílabas</span></td><td><div class="poder-nome">Locomotiva</div></td><td><div class="poder-desc">Unir consoante + vogal com naturalidade</div></td><td><span class="bncc-tag">EF01LP08</span></td><td><span class="stars" style="color:#1A3A6B;">★☆☆</span></td></tr>
+        <tr style="background:#F2F5FC;"><td><span class="lugar-tag" style="background:#C5D3F0;color:#1A3A6B;">Torre da Pronúncia</span></td><td><div class="poder-nome">Voz Precisa</div></td><td><div class="poder-desc">Pronunciar todos os sons sem trocar</div></td><td><span class="bncc-tag">EF01LP02</span></td><td><span class="stars" style="color:#1A3A6B;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#C5D3F0;color:#1A3A6B;">Laboratório Fonético</span></td><td><div class="poder-nome">Alquimista</div></td><td><div class="poder-desc">Formar palavras com sílabas embaralhadas</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#1A3A6B;">★★★</span></td></tr>
+        <tr style="background:#F2F5FC;"><td><span class="lugar-tag" style="background:#C5D3F0;color:#1A3A6B;">Beco do Som Perdido</span></td><td><div class="poder-nome">Rastreador</div></td><td><div class="poder-desc">Identificar sons que estão faltando nas palavras</div></td><td><span class="bncc-tag">EF01LP09</span></td><td><span class="stars" style="color:#1A3A6B;">★★☆</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Palácio -->
+  <div class="reino-section" style="margin-top:1rem;">
+    <div class="reino-header" style="background:linear-gradient(135deg,#C96B4B,#8B3A25);">
+      <span class="reino-header-icon">👑</span>
+      <div>
+        <div class="reino-header-nome" style="color:#F5EDD8;">Palácio do Rei ABC</div>
+        <div class="reino-header-area" style="color:rgba(245,237,216,.65);">Missões 5–7 · Leitura · Conquistas máximas</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#FCEEE9;"><th style="color:#8B3A25;">Lugar</th><th style="color:#8B3A25;">Poder</th><th style="color:#8B3A25;">O que representa</th><th style="color:#8B3A25;">BNCC</th><th style="color:#8B3A25;">★</th></tr></thead>
+      <tbody style="background:#FFFBF9;">
+        <tr><td><span class="lugar-tag" style="background:#F5D5C8;color:#8B3A25;">Portão</span></td><td><div class="poder-nome">Chave das Letras</div></td><td><div class="poder-desc">Reconhecer todas as letras do alfabeto com segurança</div></td><td><span class="bncc-tag">EF01LP08</span></td><td><span class="stars" style="color:#C96B4B;">★★☆</span></td></tr>
+        <tr style="background:#FFF5F2;"><td><span class="lugar-tag" style="background:#F5D5C8;color:#8B3A25;">Salão das Palavras</span></td><td><div class="poder-nome">Leitora Nascente</div></td><td><div class="poder-desc">Ler palavras simples com autonomia</div></td><td><span class="bncc-tag">EF01LP05</span></td><td><span class="stars" style="color:#C96B4B;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#F5D5C8;color:#8B3A25;">Memória Viva</span></td><td><div class="poder-nome">Guardiã das Palavras</div></td><td><div class="poder-desc">Compreender o que está lendo</div></td><td><span class="bncc-tag">EF01LP06</span></td><td><span class="stars" style="color:#C96B4B;">★★★</span></td></tr>
+        <tr style="background:#FCEEE9;"><td><span class="lugar-tag" style="background:#0D1F3C;color:#C9A84C;">Trono · Jogo 1</span></td><td><div class="poder-nome" style="color:#C96B4B;">Construtora de Sílabas</div></td><td><div class="poder-desc">Conquista máxima do Jogo 1 — lê sílabas simples com fluência</div></td><td><span class="bncc-tag">EF01LP05</span></td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- REINO DA VIDA -->
+<div class="secao" id="vida">
+  <div class="secao-header">
+    <div class="secao-num">04</div>
+    <h2 class="secao-title">Reino da Vida · Todos os Poderes</h2>
+  </div>
+  <p class="lead">Plantas brasileiras como território. Cada bioma é um lugar do mapa. Os poderes são de ciências naturais — mas a lógica do card é idêntica ao Reino das Letras.</p>
+
+  <div class="reino-section">
+    <div class="reino-header" style="background:linear-gradient(135deg,#5B8C5A,#1A4A1A);">
+      <span class="reino-header-icon">🌳</span>
+      <div>
+        <div class="reino-header-nome" style="color:white;">Floresta Amazônica · Árvores Brasileiras</div>
+        <div class="reino-header-area" style="color:rgba(255,255,255,.6);">Sumaúma · Seringueira · Jequitibá · Vitória-Régia</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#C3DBC2;"><th style="color:#3A6A39;">Lugar</th><th style="color:#3A6A39;">Poder</th><th style="color:#3A6A39;">O que representa</th><th style="color:#3A6A39;">BNCC</th><th style="color:#3A6A39;">★</th></tr></thead>
+      <tbody style="background:#F8FDF8;">
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Raiz da Sumaúma</span></td><td><div class="poder-nome">Raiz Profunda</div></td><td><div class="poder-desc">Entender que plantas precisam de solo, água e luz</div></td><td><span class="bncc-tag">EF01CI05</span></td><td><span class="stars" style="color:#5B8C5A;">★☆☆</span></td></tr>
+        <tr style="background:#F2FAF2;"><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Copa da Seringueira</span></td><td><div class="poder-nome">Pulmão Verde</div></td><td><div class="poder-desc">Entender fotossíntese de forma simples</div></td><td><span class="bncc-tag">EF02CI04</span></td><td><span class="stars" style="color:#5B8C5A;">★★☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Rio do Jequitibá</span></td><td><div class="poder-nome">Ciclo Vivo</div></td><td><div class="poder-desc">Compreender o ciclo da água</div></td><td><span class="bncc-tag">EF03CI10</span></td><td><span class="stars" style="color:#5B8C5A;">★★☆</span></td></tr>
+        <tr style="background:#F2FAF2;"><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Folha da Vitória-Régia</span></td><td><div class="poder-nome">Flutuador</div></td><td><div class="poder-desc">Compreender densidade e flutuabilidade</div></td><td><span class="bncc-tag">EF01CI02</span></td><td><span class="stars" style="color:#5B8C5A;">★★★</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#C3DBC2;color:#3A6A39;">Claro da Mata</span></td><td><div class="poder-nome">Observador</div></td><td><div class="poder-desc">Classificar seres vivos por características visíveis</div></td><td><span class="bncc-tag">EF01CI01</span></td><td><span class="stars" style="color:#5B8C5A;">★☆☆</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reino-section" style="margin-top:1rem;">
+    <div class="reino-header" style="background:linear-gradient(135deg,#C9A84C,#7A5E1A);">
+      <span class="reino-header-icon">🌾</span>
+      <div>
+        <div class="reino-header-nome" style="color:#F5EDD8;">Campo do Cerrado · Buriti e Ipê</div>
+        <div class="reino-header-area" style="color:rgba(245,237,216,.65);">Biomas brasileiros · Estações · Ciclos naturais</div>
+      </div>
+    </div>
+    <table class="reino-table">
+      <thead><tr style="background:#FBF5E0;"><th style="color:#8B6914;">Lugar</th><th style="color:#8B6914;">Poder</th><th style="color:#8B6914;">O que representa</th><th style="color:#8B6914;">BNCC</th><th style="color:#8B6914;">★</th></tr></thead>
+      <tbody style="background:#FFFEF0;">
+        <tr><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Pé do Buriti</span></td><td><div class="poder-nome">Guardião do Cerrado</div></td><td><div class="poder-desc">Reconhecer plantas típicas do cerrado</div></td><td><span class="bncc-tag">EF03CI06</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr style="background:#FAFAF0;"><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Terra Vermelha</span></td><td><div class="poder-nome">Semeador</div></td><td><div class="poder-desc">Compreender germinação — atividade prática do feijão</div></td><td><span class="bncc-tag">EF01CI05</span></td><td><span class="stars" style="color:#C9A84C;">★☆☆</span></td></tr>
+        <tr><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Ipê Amarelo</span></td><td><div class="poder-nome">Florescedor</div></td><td><div class="poder-desc">Compreender ciclos sazonais das plantas</div></td><td><span class="bncc-tag">EF02CI04</span></td><td><span class="stars" style="color:#C9A84C;">★★☆</span></td></tr>
+        <tr style="background:#FAFAF0;"><td><span class="lugar-tag" style="background:#FEF3C7;color:#8B6914;">Vereda</span></td><td><div class="poder-nome">Viajante dos Biomas</div></td><td><div class="poder-desc">Identificar diferenças entre biomas brasileiros</div></td><td><span class="bncc-tag">EF03CI09</span></td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+        <tr style="background:#FBF5E0;"><td><span class="lugar-tag" style="background:#0D1F3C;color:#C9A84C;">SECRETO</span></td><td><div class="poder-nome" style="color:#C9A84C;">?</div></td><td><div class="poder-desc" style="color:#C9A84C;">Ativado ao plantar e colher o feijão da missão</div></td><td>—</td><td><span class="stars" style="color:#C9A84C;">★★★</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- OUTROS REINOS -->
+<div class="secao" id="outros">
+  <div class="secao-header">
+    <div class="secao-num">05</div>
+    <h2 class="secao-title">Reinos Futuros · Prévia dos Poderes</h2>
+  </div>
+  <p class="lead">Estas seções aparecem lacradas no álbum. A criança vê o nome e o ícone mas não pode abrir. Estrutura para quando cada reino for desenvolvido.</p>
+  <div class="g3">
+    <div class="card" style="border-top:3px solid #C9A84C;opacity:.85;">
+      <span class="card-icon">🔢</span>
+      <div class="card-title">Reino dos Números</div>
+      <div class="card-sub">Matemática · Em desenvolvimento</div>
+      <p class="card-text">Poderes de lógica, ordem, comparação e operações. Lugares: Praça da Comparação, Torre dos Algarismos, Ponte das Operações.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #3D3D3D;opacity:.85;">
+      <span class="card-icon">⭐</span>
+      <div class="card-title">Reino dos Astros</div>
+      <div class="card-sub">Astronomia · Em desenvolvimento</div>
+      <p class="card-text">Poderes de observação, ciclos lunares, movimentos da Terra. Lugares: Observatório das Sílabas, Campo das Constelações.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #C96B4B;opacity:.85;">
+      <span class="card-icon">🎨</span>
+      <div class="card-title">Reino das Artes</div>
+      <div class="card-sub">Criatividade · Transversal</div>
+      <p class="card-text">Poderes de expressão, criação e imaginação. Único reino sem vilão — o Borrão não entra porque criatividade pura não tem forma para apagar.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #1A3A6B;opacity:.85;">
+      <span class="card-icon">🌊</span>
+      <div class="card-title">Reino dos Mares</div>
+      <div class="card-sub">Ciências · Oceanos</div>
+      <p class="card-text">Poderes de ecossistemas marinhos, ciclos oceânicos, biodiversidade. Lugares: Recife de Coral, Abismo do Saber.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #5B8C5A;opacity:.85;">
+      <span class="card-icon">🌍</span>
+      <div class="card-title">Reino do Tempo</div>
+      <div class="card-sub">História e Geografia</div>
+      <p class="card-text">Poderes de memória histórica, localização espacial, civilizações. A criança viaja entre eras. Cada era é uma missão.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #C9A84C;opacity:.85;">
+      <span class="card-icon">🔬</span>
+      <div class="card-title">Reino dos Códigos</div>
+      <div class="card-sub">Lógica · 4º ao 6º ano</div>
+      <p class="card-text">Poderes de raciocínio lógico, padrões, sequências. Para crianças maiores. Desbloqueado após o Reino dos Números.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PODERES CRUZADOS -->
+<div class="secao" id="cross">
+  <div class="secao-header">
+    <div class="secao-num">06</div>
+    <h2 class="secao-title">Poderes Cruzados — Entre Reinos</h2>
+  </div>
+  <p class="lead">Alguns poderes funcionam em mais de um reino. Isso cria conexão entre os produtos e dá valor acumulado ao álbum.</p>
+  <div class="cross-box">
+    <div class="cross-title">🔗 Como funciona</div>
+    <div class="cross-desc">No card do poder cruzado, o rodapé tem um símbolo extra — dois reinos conectados por uma linha. Na página do álbum, um pequeno adesivo de "ativado" pode ser colado no segundo reino.</div>
+    <div class="cross-examples">
+      <div class="cross-ex">
+        <div style="font-size:.85rem;">📚→🌿</div>
+        <div class="cross-arrow">→</div>
+        <div><div class="cross-poder">Ouvido do Saberium</div><div class="cross-info">Conquistado na Floresta dos Sons (Letras). Funciona no Reino da Vida para identificar sons da natureza — canto de pássaros, som do vento, barulho da chuva.</div></div>
+      </div>
+      <div class="cross-ex">
+        <div style="font-size:.85rem;">🌿→📚</div>
+        <div class="cross-arrow">→</div>
+        <div><div class="cross-poder">Observador</div><div class="cross-info">Conquistado no Claro da Mata (Vida). Funciona no Reino das Letras para encontrar detalhes escondidos nas atividades e pistas nos pergaminhos.</div></div>
+      </div>
+      <div class="cross-ex">
+        <div style="font-size:.85rem;">📚→🔢</div>
+        <div class="cross-arrow">→</div>
+        <div><div class="cross-poder">Arquiteto das Sílabas</div><div class="cross-info">Conquistado na Ponte das Sílabas (Letras). Funciona no Reino dos Números para entender sequências — a lógica de montar peças em ordem é a mesma.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="quote">"Argumento de venda direto: quem compra o segundo reino usa os poderes que já tem. A criança que chegou ao Reino da Vida com o Ouvido do Saberium tem vantagem desde o primeiro dia. Isso cria fidelidade ao universo — não ao produto isolado."</div>
+</div>
+
+<!-- PARA MYLENA -->
+<div class="secao" id="mylena">
+  <div class="secao-header">
+    <div class="secao-num">07</div>
+    <h2 class="secao-title">Para a Mylena — O que precisa ser ilustrado</h2>
+  </div>
+  <div class="mylena-box">
+    <div class="mylena-title">🎨 Lista de entregas do sistema de cards — em ordem de prioridade</div>
+    <div class="mylena-item">
+      <div class="mylena-num">1</div>
+      <div><div class="mylena-nome">Template base do Power Card</div><div class="mylena-desc">Arquivo editável com as 5 zonas fixas. Cores e ícones mudam por reino — a estrutura nunca muda. Formato: 63mm × 88mm (padrão colecionável).</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">2</div>
+      <div><div class="mylena-nome">Card do Traço — prioridade máxima</div><div class="mylena-desc">O card do personagem principal. Entregue no Prólogo — é o primeiro objeto físico que a criança segura. Precisa ser o mais especial visualmente.</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">3</div>
+      <div><div class="mylena-nome">Cards das Vogais A, E, I, O, U</div><div class="mylena-desc">5 cards com identidade visual própria. Cada vogal tem cor e ícone único — Casa do A (Terracota), Casa do E (Azul), Casa do I (Cinza), Casa do O (Verde), Casa do U (Dourado).</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">4</div>
+      <div><div class="mylena-nome">Ícone único para cada poder (~30 Reino das Letras)</div><div class="mylena-desc">Estilo consistente — linha limpa, cor chapada, sem gradiente. Cada ícone deve ser imediatamente reconhecível em 63mm de largura.</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">5</div>
+      <div><div class="mylena-nome">Silhuetas para slots vazios</div><div class="mylena-desc">Versão em sombra de cada ícone — mesma forma, sem cor, só contorno suave. É o que a criança vê antes de conquistar o card. O contraste entre sombra e card real precisa ser dramático.</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">6</div>
+      <div><div class="mylena-nome">Capa e separadores do Livro dos Poderes</div><div class="mylena-desc">Capa personalizável com nome da criança. Seis separadores — um por reino — com cor e identidade de cada um. Seções futuras com visual "lacrado" (cadeado + névoa).</div></div>
+    </div>
+    <div class="mylena-item">
+      <div class="mylena-num">7</div>
+      <div><div class="mylena-nome">Cristais do Saberium (adesivos circulares)</div><div class="mylena-desc">5 cristais: Azul-Explorador (Traço) · Azul-Letras · Verde-Vida · Dourado-Números · Terracota-Coragem. Cada um com símbolo do reino. Impressão em papel brilhante ou adesivo holográfico.</div></div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:1.5rem;">"A paleta oficial do Saberium é: Pergaminho #F5EDD8 · Terracota #C96B4B · Azul Explorador #1A3A6B · Verde Aventura #5B8C5A · Dourado Mágico #C9A84C · Amarelo Descoberta #F5C400 · Cinza Apagado #3D3D3D. Todas as peças gráficas devem partir dessas 7 cores."</div>
+</div>
+
+</div>
+
+<!-- RODAPÉ -->
+<div class="rodape">
+  <span class="rodape-key">🗝️</span>
+  <div class="rodape-meta">
+    SABERIUM · LIVRO DOS PODERES · SISTEMA COMPLETO<br>
+    DOCUMENTO INTERNO · PARA MYLENA<br>
+    PALETA OFICIAL APLICADA · 2026<br>
+    Jéssica · Mylena · Luara
+  </div>
+</div>
+
+</body>
+</html>
